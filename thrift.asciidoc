@@ -1,31 +1,51 @@
 Thrift: The Missing Guide
 =========================
 Diwaker Gupta <me@diwakergupta.info>
+Yan Hai <yan_h@hotmail.com>
 {localdate}:
 Written against Thrift 0.6.0
+基于 Thrift 0.6.0
 
 From the http://thrift.apache.org[Thrift website]:
+正如http://thrift.apache.org[Thrift网站]所说:
 [quote]
 Thrift is a software framework for scalable cross-language services development.
+Thrift是一个用于可扩展的, 跨语言的服务开发软件框架.
 It combines a software stack with a code generation engine to build services
+它将软件栈和代码生成引擎相结合起来, 高效及无缝地创建可以连接基于不同语言的服务.
+Thrift支持的语言包括: C++, Java, Python, PHP, Ruby,
+Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml.
+
 that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby,
 Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml.
 
+在所提供的特性方面, Thrift无疑是非常丰富的. 它唯一的缺点就是缺少一个_好的_文档.
 Thrift is clearly abundant in features. What is sorely lacking though is _good_
+这个导引的目的就是为了填补这个空白. 但是, 这个指引仅做参考 -- 如果需要的是一个一步步讲解如何使用
+Thrift的例子, 请参考 Thrift tutorial.
 documentation. This guide is an attempt to fill that hole. But note that this is
 a reference guide -- for a step-by-step example on how to use Thrift, refer to
 the Thrift tutorial.
 
+在结构和组织的很多方面, 都借鉴了(出色的)
+http://code.google.com/apis/protocolbuffers/docs/proto.html[Google Protocol
+Buffer Language Guide]. 在此对其作者表示感谢.
 Many aspects of the structure and organization of this guide have been borrowed
 from the (excellent)
 http://code.google.com/apis/protocolbuffers/docs/proto.html[Google Protocol
 Buffer Language Guide]. I thank the authors of that document.
 
+link:thrift.pdf[PDF版本]也可由此下载.
 A link:thrift.pdf[PDF version] is also available.
 
 .Copyright
+.版权
 
 Copyright (C) 2013 Diwaker Gupta
+
+本指引遵循协议 http://creativecommons.org/licenses/by-nc/3.0/[Creative Commons
+Attribution-NonCommercial 3.0
+Unported License].
 
 This work is licensed under the
 http://creativecommons.org/licenses/by-nc/3.0/[Creative Commons
@@ -33,6 +53,10 @@ Attribution-NonCommercial 3.0
 Unported License].
 
 .Contributions
+.贡献
+
+我欢迎对于此导引的反馈和贡献.
+https://github.com/diwakergupta/thrift-missing-guide[源码]
 
 I welcome feedback and contributions to this guide. You can find the
 https://github.com/diwakergupta/thrift-missing-guide[source code]
@@ -40,30 +64,46 @@ over at http://github.com[GitHub]. Alternatively, you can file a
 https://github.com/diwakergupta/thrift-missing-guide/issues[bug].
 
 .Acknowledgements
+.鸣谢
+
+首先感谢Thrift软件的作者.
+以及Google Protocol Buffer的作者给予的灵感和来自Thrift的反馈.
+特别感谢Dave Engberg.
 
 I thank the authors of Thrift for the software, the authors of the Google
 Protocol Buffer documentation for the inspiration and the Thrift community for
 the feedback. Special thanks to Dave Engberg from Evernote for his input.
 
 .About the Author
+.关于作者
+
+我是一名开源极客和软件架构师.
+Blog: http://floatingsun.net[Floating Sun]
+个人网站: http://diwakergupta.info[here]
 
 I'm an open source geek and a software architect. I blog over at
 http://floatingsun.net[Floating Sun] and you can find more about me
 http://diwakergupta.info[here].
 
 Language Reference
+语言参考
 ------------------
 include::language-reference.asciidoc[]
 
 Generated Code
+生成的代码
 --------------
 
+这一章讲解了如何使用由Thrift生成的代码.
+首先我们会介绍一些在Thrift广泛使用的概念 -- 这些概念控制着生成代码的结构和方式.
+理解这些概念能够帮助你理解如果跟高效的使用Thrift.
 This section contains documentation for working with Thrift generated code in
 various target languages. We begin by introducing the common concepts that are
 used across the board -- these govern how the generated code is structured and
 will hopefully help you understand how to use it effectively.
 
 Concepts
+概念
 ~~~~~~~~
 include::code-concepts.asciidoc[]
 
@@ -77,15 +117,18 @@ include::code-cpp.asciidoc[]
 
 
 Other Languages
+其他语言
 ~~~~~~~~~~~~~~~
 
 Python, Ruby, Javascript etc.
 
 Best Practices
+最佳实践
 --------------
 include::best-practices.asciidoc[]
 
 Resources
+其他资源
 ---------
 
 * http://thrift.apache.org/static/files/thrift-20070401.pdf[Thrift whitepaper]
@@ -95,6 +138,7 @@ Resources
   Buffers]
 
 Translations
+其他语言
 ------------
 
 * http://science.webhostinggeeks.com/thrift-uputstvo-koje-nedostaje[Serbo-Croatian]

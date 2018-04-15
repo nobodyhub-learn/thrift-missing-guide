@@ -2,7 +2,9 @@ Generated Files
 ^^^^^^^^^^^^^^^
 
 * a single file (+Constants.java+) containing all constant definitions
+* 所有的常数声明包含在一个单独文件
 * one file per struct, enum and service
+* 结构体,枚举和服务各自单独对应一个文件
 
 -----------------------------------------------------------------------------
 $ tree gen-java
@@ -18,6 +20,7 @@ $ tree gen-java
 
 [TIP]
 .Naming Conventions
+命名规则
 =============================================================================
 While the Thrift compiler does not enforce any naming conventions, it is
 advisable to stick to standard naming conventions otherwise you may be in for
@@ -26,6 +29,12 @@ some surprises. For instance, if you have a struct named +tweetSearchResults+
 +TweetSearchResults+ (note the CamelCase) containing a class named
 +tweetSearchResults+ (like the original struct). This will obviously not
 compile under Java.
+
+尽管Thrift编译器不会要求任何命名规则, 但是还是建议遵守彼岸准的命名规则.
+否则的可能会遇到预料之外的情况.
+比如说, 如果有一个名为 +tweetSearchResults+ 的结构体, Thrift编译器将会生成一个名为
+ +TweetSearchResults+ 的Java文件来包含一个名为 +tweetSearchResults+ 的类.
+这将导致编译错误.
 =============================================================================
 
 Types
@@ -53,13 +62,23 @@ Typedefs
 ^^^^^^^^
 
 The Java language does not have any native support for "typedefs". So when the
+
+Java语言没有对"typedefs"原生支持. 所以当Thrife编译器遇到typedef声明时, 它只是
+使用原始类型代替.
+
 Thrit Java code generator encounters a typedef declaration, it merely
 substitutes it with the original type. That is, even though you may have
 typedefd +TypeA+ to +TypeB+, in the generated Java code, all references to
 +TypeB+ will be replaced by +TypeA+.
 
+因此, 尽管你将 +TypeA+ typedef 为 +TypeB+, 在生成的Java代码中, 所有对 +TypeB+
+都会被 +TypeA+ 替换.
+
 Consider the example IDL above. The declaration for +tweets+ in the generated
 code for +TweetSearchResults+ is simply +public List<Tweets> tweets+.
+
+考虑以上的范例, 声明中的 +TweetSearchResults+ 里的 +tweets+ 为
++public List<Tweets> tweets+ .
 
 Enums
 ^^^^^
@@ -70,18 +89,30 @@ the compiler generates a +findByValue+ method to obtain the enum corresponding
 to a numeric value. This is more robust than using the +ordinal+ feature of Java
 enums.
 
+Thrift枚举映射为Java +enum+ 类型. 你可以通过(接口 +TEnum+ ) +getValue+ 来获取其数字值.
+此外, 编译器生成了一个 +findByValue+ 方法来根据数字值来获取枚举.
+
+这比使用Java的 +ordinal+ 特性更强大.
+
 Constants
 ^^^^^^^^^
 
 Thrift puts all defined constants in a public class named +Constants+ as +public
 static final+ members. Constants of any of the primitive types are supported.
 
+Thrfit 将所有定义的常数作为 +public static final+ 成员放入一个public类 +Constants+ 中.
+
 [TIP]
 .Contain your Constants
+.使用常量
 =============================================================================
 If you have multiple Thrift files (in the same namespace) containing const
 definitions, the Thrift compiler will overwrite the +Constants.java+ file with
 the definitions found in the file processed last. You _must_ either define all
 your constants in a single file, or invoke the compiler on a single file that
 includes all the other files.
+
+如果你有多个Thrift文件(在同一个命名空间中)包含const定义, Thrift编译器会使用最后处理
+的覆盖 +Constants.java+ 的内容. 你 _必须_ 在一个文件中定义所有的常数, 或者在一个包含
+了所有其他的文件生调用编译器.
 =============================================================================
