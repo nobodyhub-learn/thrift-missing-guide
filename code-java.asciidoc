@@ -1,10 +1,8 @@
 Generated Files
 ^^^^^^^^^^^^^^^
 
-* a single file (+Constants.java+) containing all constant definitions
-* 所有的常数声明包含在一个单独文件
-* one file per struct, enum and service
-* 结构体,枚举和服务各自单独对应一个文件
+* 所有的常数声明包含在一个单独文件 a single file (+Constants.java+) containing all constant definitions
+* 结构体,枚举和服务各自单独对应一个文件 one file per struct, enum and service
 
 -----------------------------------------------------------------------------
 $ tree gen-java

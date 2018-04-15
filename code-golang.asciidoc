@@ -17,11 +17,17 @@ $ tree gen-go
 .Go命名规则
 =============================================================================
 The Go language uses capitalization to determine export rules. The Go thrift
+
 Go语言使用大写字母来确定导出规则。Go thrift库会根据此规则调整名字.
+
 library adapts thrift names to adhere to this convention. So a struct
-所以一个名为+userName+的结构字段将在Go中以+UserName+的形式访问.
+
+所以一个名为 +userName+ 的结构字段将在Go中以 +UserName+ 的形式访问.
+
 field called +userName+ will be accessible in Go as +UserName+. As a rule, the
+
 通常情况下，任何常量或结构字段的第一个字母将被大写。
+
 first letter of any constant or struct field will be capitalized.
 =============================================================================
 
@@ -45,12 +51,12 @@ Thrift maps the various base and container types to Go types as follows:
 With the exception of +set+, which has no direct Go equivalent, all of the
 types are straightforward.
 
-除了+set+之外, 其余的类型在Go语言中都有直接的对应.
+除了 +set+ 之外, 其余的类型在Go语言中都有直接的对应.
 
 The Thrift developers decided that the best way to represent Thrift +set+ types
 in Go was to implement them as +map[t1]bool+.
 
-Thrift开发人员决定代表Thrift +set+类型的最佳方式是实现为 +map[t1]bool+.
+Thrift开发人员决定代表Thrift +set+ 类型的最佳方式是实现为 +map[t1]bool+.
 
 Typedefs
 ^^^^^^^^
@@ -67,7 +73,7 @@ The Go Thrift compiler translates enums to constants. The strategy it employs
 is to create a set of constants where the +enum+ name is the prefix and the
 +enum+ item's name is the suffix. The two are separated by an underscore (+_+).
 
-Go Thrift编译器将枚举翻译为常数. 所采用的策略就是创建一组常数. 以+enum+名字作为前缀,
+Go Thrift编译器将枚举翻译为常数. 所采用的策略就是创建一组常数. 以 +enum+ 名字作为前缀,
 +enum+ 元素的名字作为后缀, 并由下划线(+_+)来分割.
 
 The +TweetType+ of +TWEET+ becomes, in Go, +TweetType_TWEET+.
@@ -82,8 +88,9 @@ constants (e.g. +int+, +string+, etc.). For types that cannot be declared
 +const+ (like maps and slices), the Go library declares these as global +var+.
 
 对于可以被声明为常数的类型(例如, +int+, +string+ 等),
-Thrift将其声明为+const+.
-对于不可以被声明为+const+的类型(例如, maps and slices), Go声明其为全局+var+.
+Thrift将其声明为 +const+.
+
+对于不可以被声明为 +const+ 的类型(例如, maps and slices), Go声明其为全局 +var+.
 
 Structs
 ^^^^^^^
@@ -94,7 +101,7 @@ language libraries.
 Thrift +struct+ 转换为Go +struct+ 的方式与其他语言中的不一样.
 
 Unlike most Thrift implementations, the type declarations are substantially
-不像多数Thrift实现, 类型申明基本上由Thrift属性是+required+还是+optional+决定.
+不像多数Thrift实现, 类型申明基本上由Thrift属性是 +required+ 还是 +optional+ 决定.
 为了区别空值和 +nil+, Go使用指针来表示所有 +optional+ 值.
 
 impacted by whether or not a thrift attribute is declared +required+ or

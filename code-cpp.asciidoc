@@ -1,12 +1,9 @@
 Generated Files
 ^^^^^^^^^^^^^^^
 
-* all constants go into a single +.cpp/.h+ pair
-* 所有的出书都会生成到单独的一对+.cpp/.h+中
-* all type definitions (enums and structs) go into another +.cpp/.h+ pair
-* 所有的类型定义(枚举和结构体)会生成至另一对+.cpp/.h+中
-* each service gets its own +.cpp/.h+ pair
-* 每个服务会有自己的+.cpp/.h+对
+* 所有的出书都会生成到单独的一对+.cpp/.h+中 all constants go into a single +.cpp/.h+ pair
+* 所有的类型定义(枚举和结构体)会生成至另一对+.cpp/.h+中 all type definitions (enums and structs) go into another +.cpp/.h+ pair
+* 每个服务会有自己的+.cpp/.h+对 each service gets its own +.cpp/.h+ pair
 
 -----------------------------------------------------------------------------
 $ tree gen-cpp
