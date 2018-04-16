@@ -1,5 +1,5 @@
 Generated Files
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 * 所有的常数声明包含在一个单独文件 a single file (+Constants.java+) containing all constant definitions
 * 结构体,枚举和服务各自单独对应一个文件 one file per struct, enum and service
@@ -17,8 +17,7 @@ $ tree gen-java
 -----------------------------------------------------------------------------
 
 [TIP]
-.Naming Conventions
-命名规则
+.Naming Conventions 命名规则
 =============================================================================
 While the Thrift compiler does not enforce any naming conventions, it is
 advisable to stick to standard naming conventions otherwise you may be in for
@@ -40,6 +39,8 @@ Types
 
 Thrift maps the various base and container types to Java types as follows:
 
+Thrift基类型和容器类型与Java类型的映射如下:
+
 * +bool+: +boolean+
 * +binary+: +byte[]+
 * +byte+: +byte+
@@ -55,6 +56,9 @@ Thrift maps the various base and container types to Java types as follows:
 As you can see, the mapping is straight forward and one-to-one for the most
 part. This is not surprising given that Java was the primary target language
 when the Thrift project began.
+
+正如你所看到的，映射是直接的，大多都是一一对应的。 这是因为在Thrift项目开始时,
+Java是主要的目标语言.
 
 Typedefs
 ^^^^^^^^
@@ -101,8 +105,7 @@ static final+ members. Constants of any of the primitive types are supported.
 Thrfit 将所有定义的常数作为 +public static final+ 成员放入一个public类 +Constants+ 中.
 
 [TIP]
-.Contain your Constants
-.使用常量
+.Contain your Constants 使用常量
 =============================================================================
 If you have multiple Thrift files (in the same namespace) containing const
 definitions, the Thrift compiler will overwrite the +Constants.java+ file with

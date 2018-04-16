@@ -13,8 +13,7 @@ $ tree gen-go
 -----------------------------------------------------------------------------
 
 [TIP]
-.Naming with Go
-.Go命名规则
+.Naming with Go Go命名规则
 =============================================================================
 The Go language uses capitalization to determine export rules. The Go thrift
 
@@ -35,6 +34,8 @@ Types
 ^^^^^
 
 Thrift maps the various base and container types to Go types as follows:
+
+Thrift基类型和容器类型与Go类型的映射如下:
 
 * +bool+: +bool+
 * +binary+: +[]byte+
@@ -97,16 +98,14 @@ Structs
 
 The Thrift +struct+ is translated to Go +struct+ differently than in other
 language libraries.
-
-Thrift +struct+ 转换为Go +struct+ 的方式与其他语言中的不一样.
-
 Unlike most Thrift implementations, the type declarations are substantially
-不像多数Thrift实现, 类型申明基本上由Thrift属性是 +required+ 还是 +optional+ 决定.
-为了区别空值和 +nil+, Go使用指针来表示所有 +optional+ 值.
-
 impacted by whether or not a thrift attribute is declared +required+ or
 +optional+. To distinguish between an empty value and a +nil+ value, the
 Go library uses pointers for all +optional+ values.
+
+Thrift +struct+ 转换为Go +struct+ 的方式与其他语言中的不一样.
+不像多数Thrift实现, 类型申明基本上由Thrift属性是 +required+ 还是 +optional+ 决定.
+为了区别空值和 +nil+, Go使用指针来表示所有 +optional+ 值.
 
 For example, here is an abbreviated listing of the +Tweet+ struct discussed
 above:

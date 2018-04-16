@@ -21,6 +21,8 @@ Types
 
 Thrift maps the various base and container types to C++ types as follows:
 
+Thrift基类型和容器类型与C++类型的映射如下:
+
 * +bool+: +bool+
 * +binary+: +std::string+
 * +byte+: +int8_t+

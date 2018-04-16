@@ -1,5 +1,5 @@
-Versioning/Compatibility
-~~~~~~~~~~~~~~~~~~~~~~~~
+Versioning/Compatibility 版本和兼容性
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Protocols evolve over time. If an existing message type no longer meets all
 your needs -- for example, you'd like the message format to have an extra field
@@ -7,7 +7,12 @@ your needs -- for example, you'd like the message format to have an extra field
 It's very simple to update message types without breaking any of your existing
 code. Just remember the following rules:
 
+协议总是在不断的进化中, 如果一个现存的消息类型不在满足你的任何需求 --  比如说, 你需要
+消息格式包含额外的域 -- 但是你任然想要使用以旧格式创建的代码, 不用担心!
+更新消息类型非常简单，且不会破坏任何现有代码. 仅需记住以下规则:
+
 * Don't change the numeric tags for any existing fields.
+* 不要改变现有域的唯一数字标记
 * Any new fields that you add should be optional. This means that any messages
   serialized by code using your "old" message format can be parsed by your new
   generated code, as they won't be missing any required elements. You should set
@@ -18,12 +23,24 @@ code. Just remember the following rules:
   the message is later serialized, the unknown fields are serialized along with
   it -- so if the message is passed on to new code, the new fields are still
   available.
+* 任何新添加的域都应该是optional. 这意味着使用"旧"消息格式代码代码序列化的消息可以
+  被新生成的代码解析, 因为它们不会缺少任何required元素. 同时你也应该为这些新添加的
+  元素制定合理的默认值. 这样新生成的代码就可以正常的处理由旧代码生成的消息. 同样, 新
+  代码生成的消息也可以被旧代码解析: 新添加的域将会被忽略. 然而, 未知域并不会被丢弃.
+  如果该消息稍后序列化，未知域随其一同序列化 -- 所以如果消息传递给新的代码，新的字段
+  仍然是可用。
 * Non-required fields can be removed, as long as the tag number is not used
   again in your updated message type (it may be better to rename the field
   instead, perhaps adding the prefix "OBSOLETE_", so that future users of your
   .thrift can't accidentally reuse the number).
+* 只要数字标识不会被更新后的消息类型重用, Non-required域可以被删除(更好的解决方案是重命名
+  这些域, 比如说加上"OBSOLETE_"前缀, 以避免以后其他用户不消息重用数字标识).
 * Changing a default value is generally OK, as long as you remember that default
   values are never sent over the wire. Thus, if a program receives a message in
   which a particular field isn't set, the program will see the default value as
   it was defined in that program's version of the protocol. It will NOT see the
   default value that was defined in the sender's code.
+* 因为默认值不会通过消息传送, 改变默认值一般来说是没有问题的. 因此, 如果程序收到包含
+  未设定域的消息, 程序将会使用当前版本中所使用的默认值来初始化未设定域, 而不会使用发送者
+  版本中所定义的默认值.
+

@@ -222,7 +222,7 @@ struct TweetSearchResult {
 }
 -----------------------------------------------------------------------------
 <1> 文件需要使用引号包含, 结尾没有分号. File names must be quoted; again notice the absent semi-colon.
-<2> +tweet+ 文件名前缀. Note the +tweet+ prefix.
+<2> 文件名前缀 +tweet+ . Note the +tweet+ prefix.
 
 Constants 常数
 ~~~~~~~~~~~~
@@ -301,8 +301,8 @@ extend other structs.
 与服务不同, 结构体不支持继承, 也就是说, 结构体无法拓展其他的结构体.
 
 [WARNING]
-.Required Is Forever
-.Required是永久性的
+.Required Is Forever Required是永久性的
+================================================
 You should be very careful about marking fields as required. If at some point
 you wish to stop writing or sending a required field, it will be problematic to
 change the field to an optional field -- old readers will consider messages
@@ -318,6 +318,7 @@ universal.
 
 因此, 有人觉得使用required域是弊大于利. 他们偏向于仅适用optional的域.
 但是这种观点并不普遍.
+================================================
 
 Defining Services 定义服务
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -377,10 +378,12 @@ service using the +extends+ keyword.
 // TODO: an example here.
 
 [IMPORTANT]
-.Nested Types
-.嵌套类型
+.Nested Types 嵌套类型
+========================================================================
 As of this writing, Thrift does NOT support nested type _definitions_. That is, 
 you may not define a struct (or an enum) within a struct; you may of course 
 _use_ structs/enums within other structs.
+
 在写这篇文章时, Thrift不支持嵌套类型 _定义_. 也就是说你不可以在一个结构体重定义另外一个
 结构体(或枚举). 当然在结构体重 _使用_ 其他的结构体/枚举是允许的.
+========================================================================
