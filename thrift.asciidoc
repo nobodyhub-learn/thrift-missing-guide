@@ -140,6 +140,8 @@ Resources 其他资源
 Translations 其他译本
 ----------------
 
+* http://diwakergupta.github.io/thrift-missing-guide/[English]
+  by Diwaker Gupta of https://github.com/diwakergupta
 * http://science.webhostinggeeks.com/thrift-uputstvo-koje-nedostaje[Serbo-Croatian]
   by Anja Skarba of http://webhostinggeeks.com/
-* https://nobodyhub-learn.github.io/thrift-missing-guide/[Chinese Version] by Yan Hai
+* https://nobodyhub-learn.github.io/thrift-missing-guide/[Chinese] by Yan Hai
