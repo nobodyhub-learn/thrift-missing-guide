@@ -1,20 +1,16 @@
-Thrift: The Missing Guide
+Thrift: The Missing Guide 中文版
 =========================
 Diwaker Gupta <me@diwakergupta.info>
 Yan Hai <yan_h@hotmail.com>
 
-This project is an attempt to plug the gap in http://thrift.apache.org[Thrift]
-documentation. The guide can be found at:
-
-http://diwakergupta.github.io/thrift-missing-guide
-
 这个项目的主要目的是为了填补http://thrift.apache.org[Thrift]
 文档的空白.
 
-HTML版: http://diwakergupta.github.io/thrift-missing-guide
+HTML英文版: http://diwakergupta.github.io/thrift-missing-guide
+HTML中文版: https://nobodyhub-learn.github.io/thrift-missing-guide/
+PDF英文版: http://diwakergupta.github.io/thrift-missing-guide/thrift.pdf
 
-A PDF version can be found at:
 
-PDF版:
 
-http://diwakergupta.github.io/thrift-missing-guide/thrift.pdf
+
+
