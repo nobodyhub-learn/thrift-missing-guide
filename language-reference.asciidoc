@@ -1,79 +1,104 @@
-Types
-~~~~~
+Types 类型
+~~~~~~~~~
 
 The Thrift type system consists of pre-defined base types, user-defined structs,
 container types, exceptions and service definitions.
 
-Base Types
-^^^^^^^^^^
+Thrift的类型系统包含预定义的基础类型, 用户定义的结构体, 容器类型, 异常以及服务定义.
 
-* +bool+: A boolean value (true or false), one byte
-* +byte+: A signed byte
-* +i16+: A 16-bit signed integer
-* +i32+: A 32-bit signed integer
-* +i64+: A 64-bit signed integer
-* +double+: A 64-bit floating point number
-* +binary+: A byte array
-* +string+: Encoding agnostic text or binary string
+Base Types 基础类型
+^^^^^^^^^^^^^^^^
+
+* +bool+: 布尔值(true或false), 一个字节. A boolean value (true or false), one byte
+* +byte+: 一个字节. A signed byte
+* +i16+: 16位带符号整数. A 16-bit signed integer
+* +i32+: 32位带符号整数. A 32-bit signed integer
+* +i64+: 64位带符号整数. A 64-bit signed integer
+* +double+: 64位浮点数. A 64-bit floating point number
+* +binary+: 字节数组. A byte array
+* +string+: 编码未知的文本或者二进制字符串. Encoding agnostic text or binary string
 
 Note that Thrift does not support unsigned integers because they have no direct
 translation to native (primitive) types in many of Thrift's target languages.
 
-Containers
-^^^^^^^^^^
+注意, Thrift不支持无符号整数. 因为, 多数Thrift的目标语言并没有对应的原生类型.
+
+Containers 容器
+^^^^^^^^^^^^^^
 
 Thrift containers are strongly typed containers that map to the most commonly
 used containers in popular programming languages. They are annotated using the
 Java Generics style. There are three containers types available:
 
-* +list<t1>+: An ordered list of elements of type +t1+. May contain duplicates.
-* +set<t1>+: An unordered set of unique elements of type +t1+.
-* +map<t1,t2>+: A map of strictly unique keys of type +t1+ to values of type
+Thrift容器是和流行编程语言类似的强类型容器.
+他们使用的都是类似Java泛型的风格. 有三种容器可供使用:
+
+* +list<t1>+: 一个 +t1+ 类型的有序列表, 元素可能重复. An ordered list of elements of type +t1+. May contain duplicates.
+* +set<t1>+: 一个 +t1+ 类型的无序集合. An unordered set of unique elements of type +t1+.
+* +map<t1,t2>+: 一个从键类型 +t1+ 到值类型 +t2+ 的映射. 键必须是唯一的. A map of strictly unique keys of type +t1+ to values of type
   +t2+.
 
 Types used in containers may be any valid Thrift type (including structs and
 exceptions) excluding services.
 
-Structs and Exceptions
-^^^^^^^^^^^^^^^^^^^^^^
+容器类所使用的类型必须是有效的Thrift类型, 包括结构体和异常, 但不包含服务.
+
+Structs and Exceptions 结构体和异常
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A Thrift struct is conceptually similar to a +C+ struct -- a convenient way of
 grouping together (and encapsulating) related items. Structs translate to
 classes in object-oriented languages.
+
+Thrift的结构体和 +C+ 中的结构体在概念上很类似 -- 都是一种将其他单位组合起来的方式.
+结构体会被转换成面向对象语言中的类.
 
 Exceptions are syntactically and functionally equivalent to structs except that
 they are declared using the +exception+ keyword instead of the +struct+ keyword.
 They differ from structs in semantics -- when defining RPC services, developers
 may declare that a remote method throws an exception.
 
+除了使用关键字 +exception+ 进行声明之外, 异常在语法上和功能上类似于结构体.
+但是他们在语义上与结构体是有区别的 -- 当定义RPC服务是, 开发者可以
+定义一个会抛出异常的远程方法.
+
+<<_defining_structs,后续章节>>会介绍如何定义结构体和异常.
+
 Details on defining structs and exceptions are the subject of a
 <<_defining_structs,later section>>.
 
-Services
-^^^^^^^^
+Services 服务
+^^^^^^^^^^
 
 Service definitions are semantically equivalent to defining an +interface+ (or a
 pure virtual abstract class) in object-oriented programming. The Thrift compiler
 generates fully functional client and server stubs that implement the interface.
 
+服务定义在语义上类似于面向对象语言中的 +接口+ (或者纯虚抽象类).
+Thrift编译器会生成包含接口所有功能的的客户端和服务器桩.
+
+<<_defining_services,后续章节>>会介绍如何定义服务.
+
 Details on defining services are the subject of a <<_defining_services,later
 section>>.
 
-Typedefs
-~~~~~~~~
+Typedefs 类型定义
+~~~~~~~~~~~~
 
 Thrift supports C/C++ style typedefs.
+
+Thrift支持C/C++风格的类型定义.
 
 [source,c]
 -----------------------------------------------------------------------------
 typedef i32 MyInteger   // <1>
 typedef Tweet ReTweet   // <2>
 -----------------------------------------------------------------------------
-<1> Note there is no trailing semi-colon
-<2> Structs can also be used in typedefs
+<1> 注意没有结尾分号 Note there is no trailing semi-colon
+<2> 结构体也可用于类型定义 Structs can also be used in typedefs
 
-Enums
-~~~~~
+Enums 枚举
+~~~~~~~
 
 When you're defining a message type, you might want one of its fields to only
 have one of a pre-defined list of values. For example, let's say you want to add
@@ -84,6 +109,14 @@ have one of a specified set of constants as its value (if you try to provide a
 different value, the parser will treat it like an unknown field). In the
 following example we've added an enum called +TweetType+ with all the possible
 values, and a field of the same type:
+
+
+在你定义消息类型的时候, 你可能会希望其中的一个域从某个预定义的列表中取值.
+比如, 你想在给每个 +Tweet+ 加一个 +tweetType+. 这个 +tweetType+ 的取值可以是
++TWEET+, +RETWEET+, +DM+, or +REPLY+ 之一. 你可以通过在你的消息定义中添加
+一个枚举类型 -- 枚举类型的值只能是特定的常数集合中的某一元素.(如果你赋予一个集合之外的值,
+编译器会认为其实一个未知域). 在接下来的例子中, 我们添加了名为 +TweetType+ 枚举类型
+并包含所有值.
 
 [source,c]
 -----------------------------------------------------------------------------
@@ -103,22 +136,28 @@ struct Tweet {
     16: optional string language = "english"
 }
 -----------------------------------------------------------------------------
-<1> Enums are specified C-style. Compiler assigns default values starting at 0.
-<2> You can of course, supply specific integral values for constants.
-<3> Hex values are also acceptable.
-<4> Again notice no trailing semi-colon
-<5> Use the fully qualified name of the constant when assigning default values.
+<1> 类似于C风格的枚举类型, 编译器默认从0开始赋值. Enums are specified C-style. Compiler assigns default values starting at 0.
+<2> 当然, 也可以给常数提供特定的值. You can of course, supply specific integral values for constants.
+<3> 可以接受16进制. Hex values are also acceptable.
+<4> 没有结尾分号. Again notice no trailing semi-colon
+<5> 使用全限定名称来赋值. Use the fully qualified name of the constant when assigning default values.
 
 Note that unlike Protocol Buffers, Thrift does NOT yet support nested enums (or
 structs, for that matter).
 
+注意, 不像Protocol Buffers, Thrift暂不支持枚举嵌套枚举(或其他结构体).
+
 Enumerator constants MUST be in the range of _positive_ 32-bit integers.
 
-Comments
-~~~~~~~~
+枚举常数必须是 _正_ 32位整数.
+
+Comments 注释
+~~~~~~~~~~
 
 Thrift supports shell-style, C-style multi-line as well as single-line Java/C++
 style comments.
+
+Thrift支持shell风格, C风格多行和Java/C++风格的单行注释.
 
 [source,c]
 -----------------------------------------------------------------------------
@@ -132,16 +171,23 @@ style comments.
 // C++/Java style single-line comments work just as well.
 -----------------------------------------------------------------------------
 
-Namespaces
-~~~~~~~~~~
+Namespaces 命名空间
+~~~~~~~~~~~~~~
+
 
 Namespaces in Thrift are akin to namespaces in C++ or packages in Java -- they
 offer a convenient way of organizing (or isolating) your code. Namespaces may
 also be used to prevent name clashes between type definitions.
 
+Thrift的命名空间与C++的命名空间或者Java中的包类似 -- 都是为了一种组织(或者隔离)代码的方式.
+命名空间也可以避免类型定义的命名冲突.
+
 Because each language has its own package-like mechanisms (e.g. Python has
 modules), Thrift allows you to customize the namespace behavior on a
 per-language basis:
+
+因为每种语言都有自己类似于包的机制(例如Python的模块). Thrift允许你给不同语言
+来定义不同的命名空间.
 
 [source,cpp]
 -----------------------------------------------------------------------------
@@ -151,8 +197,8 @@ namespace java com.example.project // <2>
 <1> Translates to +namespace com { namespace example { namespace project {+
 <2> Translates to +package com.example.project+
 
-Includes
-~~~~~~~~
+Includes 文件包含
+~~~~~~~~~~~~
 
 It is often useful to split up Thrift definitions in separate files to ease
 maintainance, enable reuse and improve modularity/organization. Thrift allows
@@ -160,7 +206,12 @@ files to _include_ other Thrift files. Included files are looked up in the
 current directory and by searching relative to any paths specified with the +-I+
 compiler flag.
 
+将Thrift的定义分散到不同的文件以便于维护, 重用以及提升模块化和组织.
+Thrift文件允许 _包含_ 其他的Thrift文件. 被包含的文件会在当前目录和由 +-I+ 参数制定的
+相对路径下进行查找.
+
 Included objects are accessed using the name of the Thrift file as a prefix.
+被包含的对象需要使用Thrift文件名作为前缀来访问.
 
 [source,cpp]
 -----------------------------------------------------------------------------
@@ -170,28 +221,35 @@ struct TweetSearchResult {
     1: list<tweet.Tweet> tweets; // <2>
 }
 -----------------------------------------------------------------------------
-<1> File names must be quoted; again notice the absent semi-colon.
-<2> Note the +tweet+ prefix.
+<1> 文件需要使用引号包含, 结尾没有分号. File names must be quoted; again notice the absent semi-colon.
+<2> +tweet+ 文件名前缀. Note the +tweet+ prefix.
 
-Constants
-~~~~~~~~~
+Constants 常数
+~~~~~~~~~~~~
 
 Thrift lets you define constants for use across languages. Complex types and
 structs are specified using JSON notation.
+
+Thrift允许你定义跨语言的常数. 复杂的类型和结构体使用JSON表示法赋值.
 
 [source,cpp]
 -----------------------------------------------------------------------------
 const i32 INT_CONST = 1234;    // <1>
 const map<string,string> MAP_CONST = {"hello": "world", "goodnight": "moon"}
 -----------------------------------------------------------------------------
-<1> Semi-colon is (confusingly) optional; hex values are valid here.
+<1> 结尾分号可选, 允许16进制. Semi-colon is (confusingly) optional; hex values are valid here.
 
-Defining Structs
-~~~~~~~~~~~~~~~~
+Defining Structs 定义结构体
+~~~~~~~~~~~~~~~~~~~~~
 
 Structs (also known as 'messages' in some systems) are the basic building blocks
 in a Thrift IDL. A struct is composed of _fields_; each field has a unique
 integer identifier, a type, a name and an optional default value.
+
+结构体(在一些系统中也称为'消息')是Thrift IDL的基本组成部分.
+一个结构体由多个 _域_ 组成; 每个域都由唯一的整数标示符, 类型, 名称以及一个可选的默认值组成.
+
+假设你想构建一个类Twitter的服务.
 
 Consider a simple example. Suppose you want to build a
 http://twitter.com[Twitter]-like service. Here is how you might define a +Tweet+:
@@ -211,15 +269,19 @@ struct Tweet {
     16: optional string language = "english" // <4>
 }
 -----------------------------------------------------------------------------
-<1> Every field *must* have a unique, positive integer identifier
-<2> Fields may be marked as +required+ or +optional+
-<3> Structs may contain other structs
-<4> You may specify an optional "default" value for a field
-<5> Multiple structs can be defined and referred to within the same Thrift file
+<1> 每个域必须有一个唯一的正整数标示符. Every field *must* have a unique, positive integer identifier
+<2> 域必须标记为 +required+ or +optional+. Fields may be marked as +required+ or +optional+
+<3> 结构体可以包含其他结构体. Structs may contain other structs
+<4> 默认值是可选的. You may specify an optional "default" value for a field
+<5> 可以在同一个Thrift文件中定义和引用多个结构体.
+    Multiple structs can be defined and referred to within the same Thrift file
 
 As you can see, each field in the message definition has a unique numbered tag.
 These tags are used to identify your fields in the wire format, and should not
 be changed once your message type is in use.
+
+正如你看到, 消息定义中的每个域都有一个唯一的数字标签.
+这些数字标签是用来在消息格式中标识你的域. 这些标签不应该在消息类型投入使用后更改.
 
 Fields may be marked +required+ or +optional+ with obvious meanings for
 well-formed structs. Thrift will complain if required fields have not been set
@@ -228,11 +290,19 @@ it will not be serialized over the wire. If a default value has been specified
 for an optional field, the field is assigned the default value when the struct
 is parsed and no value has been explicitly assigned for that field.
 
+将域可以被标记为 +required+ 或 +optional+ 对于一个良好格式的定义是非常有意义的.
+比如, Thrift会报告如果必须的域没有被复制.
+如果一个可选的域没有被赋值, 它将不会被序列化.
+如果一个可选域有默认值, 在解析结构体时, 如果没有显示对这个可选域赋值, 默认值将被使用.
+
 Unlike services, structs do not support inheritance, that is, a struct may not
 extend other structs.
 
+与服务不同, 结构体不支持继承, 也就是说, 结构体无法拓展其他的结构体.
+
 [WARNING]
 .Required Is Forever
+.Required是永久性的
 You should be very careful about marking fields as required. If at some point
 you wish to stop writing or sending a required field, it will be problematic to
 change the field to an optional field -- old readers will consider messages
@@ -242,20 +312,36 @@ your buffers instead. Some have come the conclusion that using required does
 more harm than good; they prefer to use only optional. However, this view is not
 universal.
 
-Defining Services
-~~~~~~~~~~~~~~~~~
+在将某个域标记为required时需要十分小心. 如果你不想在消息中发送那个required域, 将那个
+域变成optional可能会产生问题 -- 老版本消息读取器会将缺少required域的消息认为不完整并拒绝
+或者丢弃. 在这种情况下, 你应该考虑编写基于特定应用的自定义消息验证过程.
+
+因此, 有人觉得使用required域是弊大于利. 他们偏向于仅适用optional的域.
+但是这种观点并不普遍.
+
+Defining Services 定义服务
+~~~~~~~~~~~~~~~~~~~~~~
 
 While there are several popular serialization/deserialization frameworks (like
 Protocol Buffers), there are few frameworks that provide out-of-the-box support
 for RPC-based services across multiple languages. This is one of the major
 attractions of Thrift.
 
+尽管当下有很多流行的序列化/反序列化框架(比如Protocol Buffers), 但是却鲜有框架支持
+跨语言的基于PRC的服务. 这也是Thrift的主要目标之一.
+
 Think of service definitions as Java interfaces -- you need to supply a name and
 signatures for the methods. Optionally, a service may extend other services.
+
+如果我们将服务看做Java接口 -- 我们需要提供方法的名字和签名. 此外, 服务可以扩展于其他服务.
 
 The Thrift compiler will generate service interface code (for the server) and
 stubs (for the client) in your chosen language. Thrift ships with RPC libraries
 for most languages that you can then use to run your client and server.
+
+Thrift编译器会你所选的语言生成服务器接口代码(服务器端)和桩代码(客户端).
+Thrift包含了所种语言客户端和服务器端运行所需的RPC库.
+
 
 [source,java]
 -----------------------------------------------------------------------------
@@ -274,20 +360,27 @@ service Twitter {
 }
 -----------------------------------------------------------------------------
 <1> Confusingly, method definitions can be terminated using comma or semi-colon
-<2> Arguments can be primitive types or structs
-<3> Likewise for return types
-<4> +void+ is a valid return type for functions
+<2> 参数可以使原始类型或结构体. Arguments can be primitive types or structs
+<3> 返回值也一样. Likewise for return types
+<4> +void+ 是有效的函数返回值. +void+ is a valid return type for functions
 
 Note that the argument lists (and exception lists) for functions are specified
 exactly like structs.
 
+注意, 函数的参数列表(和异常列表)和结构体非常类似.
+
 Services support inheritance: a service may optionally inherit from another
 service using the +extends+ keyword.
+
+服务支持继承: 一个服务可以可以使用关键词 +extends+ 来扩展其他服务.
 
 // TODO: an example here.
 
 [IMPORTANT]
 .Nested Types
+.嵌套类型
 As of this writing, Thrift does NOT support nested type _definitions_. That is, 
 you may not define a struct (or an enum) within a struct; you may of course 
 _use_ structs/enums within other structs.
+在写这篇文章时, Thrift不支持嵌套类型 _定义_. 也就是说你不可以在一个结构体重定义另外一个
+结构体(或枚举). 当然在结构体重 _使用_ 其他的结构体/枚举是允许的.

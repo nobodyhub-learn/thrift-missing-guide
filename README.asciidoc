@@ -14,5 +14,7 @@ http://diwakergupta.github.io/thrift-missing-guide
 HTML版: http://diwakergupta.github.io/thrift-missing-guide
 
 A PDF version can be found at:
+
 PDF版:
+
 http://diwakergupta.github.io/thrift-missing-guide/thrift.pdf
