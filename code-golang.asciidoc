@@ -98,6 +98,7 @@ Structs
 
 The Thrift +struct+ is translated to Go +struct+ differently than in other
 language libraries.
+
 Unlike most Thrift implementations, the type declarations are substantially
 impacted by whether or not a thrift attribute is declared +required+ or
 +optional+. To distinguish between an empty value and a +nil+ value, the
