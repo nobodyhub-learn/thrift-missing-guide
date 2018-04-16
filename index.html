@@ -915,7 +915,8 @@ asciidoc.install(2);
 <body class="article">
 <div id="header">
 <h1>Thrift: The Missing Guide</h1>
-<span id="author">Diwaker Gupta &lt;me@diwakergupta.info&gt;, Yan Hai &lt;yan_h@hotmail.com&gt;</span><br>
+<span id="author">Diwaker Gupta</span><br>
+<span id="email" class="monospaced">&lt;<a href="mailto:me@diwakergupta.info">me@diwakergupta.info</a>&gt;</span><br>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -983,9 +984,9 @@ the feedback. Special thanks to Dave Engberg from Evernote for his input.</p></d
 <div class="paragraph"><div class="title">About the Author 关于作者</div><p>I&#8217;m an open source geek and a software architect. I blog over at
 <a href="http://floatingsun.net">Floating Sun</a> and you can find more about me
 <a href="http://diwakergupta.info">here</a>.</p></div>
-<div class="paragraph"><p>我是一名开源极客和软件架构师.
-Blog: <a href="http://floatingsun.net">Floating Sun</a>
-个人网站: <a href="http://diwakergupta.info">here</a></p></div>
+<div class="paragraph"><p>我是一名开源极客和软件架构师.</p></div>
+<div class="paragraph"><p>Blog: <a href="http://floatingsun.net">Floating Sun</a></p></div>
+<div class="paragraph"><p>个人网站: <a href="http://diwakergupta.info">here</a></p></div>
 </div>
 </div>
 <div class="sect1">
@@ -1376,7 +1377,7 @@ izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
 AAAASUVORK5CYII="></td><td>
-<span class="monospaced">tweet</span> 文件名前缀. Note the <span class="monospaced">tweet</span> prefix.
+文件名前缀 <span class="monospaced">tweet</span> . Note the <span class="monospaced">tweet</span> prefix.
 </td></tr>
 </table></div>
 </div>
@@ -1592,21 +1593,23 @@ vr6+wTfK/4tEfzeeMmUKkydPzhg8jJAAREgEg0H6+vrQNC2pFL8ZUVWVrKws8vPzycnJQVXVjH/s
 /F/lgJiyQFHragAAAABJRU5ErkJggg==">
 </td>
 <td class="content">
-<div class="title">Required是永久性的</div>You should be very careful about marking fields as required. If at some point
+<div class="title">Required Is Forever Required是永久性的</div>
+<div class="paragraph"><p>You should be very careful about marking fields as required. If at some point
 you wish to stop writing or sending a required field, it will be problematic to
 change the field to an optional field&#8201;&#8212;&#8201;old readers will consider messages
 without this field to be incomplete and may reject or drop them unintentionally.
 You should consider writing application-specific custom validation routines for
 your buffers instead. Some have come the conclusion that using required does
 more harm than good; they prefer to use only optional. However, this view is not
-universal.</td>
-</tr></table>
-</div>
+universal.</p></div>
 <div class="paragraph"><p>在将某个域标记为required时需要十分小心. 如果你不想在消息中发送那个required域, 将那个
 域变成optional可能会产生问题&#8201;&#8212;&#8201;老版本消息读取器会将缺少required域的消息认为不完整并拒绝
 或者丢弃. 在这种情况下, 你应该考虑编写基于特定应用的自定义消息验证过程.</p></div>
 <div class="paragraph"><p>因此, 有人觉得使用required域是弊大于利. 他们偏向于仅适用optional的域.
 但是这种观点并不普遍.</p></div>
+</td>
+</tr></table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_defining_services_定义服务">Defining Services 定义服务</h3>
@@ -1768,11 +1771,13 @@ JpL5tYCZpEyw2f/nWt1ag2UtM0x3Mq1iAp1j+bH0M7KFCGWDnfmbd8AMnuxfUzL/C0rp/wFnFd4n
 EQn3XQAAAABJRU5ErkJggg==">
 </td>
 <td class="content">
-<div class="title">嵌套类型</div>As of this writing, Thrift does NOT support nested type <em>definitions</em>. That is,
+<div class="title">Nested Types 嵌套类型</div>
+<div class="paragraph"><p>As of this writing, Thrift does NOT support nested type <em>definitions</em>. That is,
 you may not define a struct (or an enum) within a struct; you may of course
-<em>use</em> structs/enums within other structs.
-在写这篇文章时, Thrift不支持嵌套类型 <em>定义</em>. 也就是说你不可以在一个结构体重定义另外一个
-结构体(或枚举). 当然在结构体重 <em>使用</em> 其他的结构体/枚举是允许的.</td>
+<em>use</em> structs/enums within other structs.</p></div>
+<div class="paragraph"><p>在写这篇文章时, Thrift不支持嵌套类型 <em>定义</em>. 也就是说你不可以在一个结构体重定义另外一个
+结构体(或枚举). 当然在结构体重 <em>使用</em> 其他的结构体/枚举是允许的.</p></div>
+</td>
 </tr></table>
 </div>
 </div>
@@ -2075,22 +2080,22 @@ otherwise, the sections below will assume the following Thrift specification:</p
 </pre></div></div></div>
 <div class="sidebarblock">
 <div class="content">
-<div class="title">嵌套结构如何初始化?</div>
-<div class="paragraph"><p>In an earlier section, we saw how Thrift allows structs to contain other structs</p></div>
-<div class="paragraph"><p>在之前的部分, 我们看到了Thrift是如何使用结构来包含其他的结构(尽管没有嵌套的定义！)</p></div>
-<div class="paragraph"><p>(no nested definitions yet though!) In most object-oriented and/or dynamic</p></div>
-<div class="paragraph"><p>在大多数面向对象或者动态语言中, 结构对应于其中的对象. 因此了解Thrift如何初始化嵌套结构
-是有益的.</p></div>
-<div class="paragraph"><p>languages, structs map to objects and so it is instructive to understand how
+<div class="title">How are nested structs initialized? 嵌套结构如何初始化?</div>
+<div class="paragraph"><p>In an earlier section, we saw how Thrift allows structs to contain other structs
+(no nested definitions yet though!) In most object-oriented and/or dynamic
+languages, structs map to objects and so it is instructive to understand how
 Thrift initializes nested structs. One reasonable approach would be to treat the
 nested structs as pointers or references and initialize them with NULL, until
-explicitly set by the user.</p></div>
-<div class="paragraph"><p>一个合理的方法是将嵌套的结构作为指针或者引用, 并且将他们初始化为NULL直到被显示赋值.</p></div>
-<div class="paragraph"><p>Unfortunately, for many languages, Thrift uses a <em>pass by value</em> model. As a</p></div>
-<div class="paragraph"><p>不幸的是, 对很多语言而言, Thrift使用值传递模型.</p></div>
-<div class="paragraph"><p>concrete example, consider the generated C++ code for the <span class="monospaced">Tweet</span> struct in our
+explicitly set by the user.
+Unfortunately, for many languages, Thrift uses a <em>pass by value</em> model. As a
+concrete example, consider the generated C++ code for the <span class="monospaced">Tweet</span> struct in our
 example above:</p></div>
-<div class="paragraph"><p>作为一个具体的例子，考虑有上面例子中为+Tweet+结构生成的生成的C++代码:</p></div>
+<div class="paragraph"><p>在之前的部分, 我们看到了Thrift是如何使用结构来包含其他的结构(尽管没有嵌套的定义！)
+在大多数面向对象或者动态语言中, 结构对应于其中的对象. 因此了解Thrift如何初始化嵌套结构
+是有益的.
+一个合理的方法是将嵌套的结构作为指针或者引用, 并且将他们初始化为NULL直到被显示赋值.
+不幸的是, 对很多语言而言, Thrift使用值传递模型.
+作为一个具体的例子，考虑有上面例子中为+Tweet+结构生成的生成的C++代码:</p></div>
 <div class="listingblock">
 <div class="content"><div class="highlight"><pre><span></span>  <span class="p">...</span>
   <span class="kt">int32_t</span> <span class="n">userId</span><span class="p">;</span>
@@ -2104,8 +2109,8 @@ example above:</p></div>
 <div class="paragraph"><p>As you can see, the nested <span class="monospaced">Location</span> structure is <strong>fully allocated inline</strong>.
 Because <span class="monospaced">Location</span> is optional, the code uses the internal <em>__isset</em> flags to
 determine if the field has actually been "set" by the user.</p></div>
-<div class="paragraph"><p>如你所见, 嵌套的 <span class="monospaced">Location</span> 结构是<strong>完全内联分配</strong>.</p></div>
-<div class="paragraph"><p>因为 <span class="monospaced">Location</span> 是可选的, 代码使用内部标记'__isset'来决定这个域是否被复制.</p></div>
+<div class="paragraph"><p>如你所见, 嵌套的 <span class="monospaced">Location</span> 结构是 <strong>完全内联分配</strong> .
+因为 <span class="monospaced">Location</span> 是可选的, 代码使用内部标记'__isset'来决定这个域是否被复制.</p></div>
 <div class="paragraph"><p>This can lead to some surprising and unintuitive behavior:</p></div>
 <div class="paragraph"><p>这个可能导致某些意外的非直观行为:</p></div>
 <div class="ulist"><ul>
@@ -2265,6 +2270,7 @@ compile under Java.</p></div>
 <div class="sect3">
 <h4 id="_types">Types</h4>
 <div class="paragraph"><p>Thrift maps the various base and container types to Java types as follows:</p></div>
+<div class="paragraph"><p>Thrift基类型和容器类型与Java类型的映射如下:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -2325,6 +2331,8 @@ compile under Java.</p></div>
 <div class="paragraph"><p>As you can see, the mapping is straight forward and one-to-one for the most
 part. This is not surprising given that Java was the primary target language
 when the Thrift project began.</p></div>
+<div class="paragraph"><p>正如你所看到的，映射是直接的，大多都是一一对应的。 这是因为在Thrift项目开始时,
+Java是主要的目标语言.</p></div>
 </div>
 <div class="sect3">
 <h4 id="_typedefs">Typedefs</h4>
@@ -2412,7 +2420,7 @@ uSP3jMwwjKy4G3AXwB0ugAsx5YzMndW//DOy3OFMjGwrxrKs7NX9LBfAneFFUcxec6rU5zqpvCqA
 qTCT16/0nPgLA/i6xjf+Xw3+B2ll/uiqTaJTAAAAAElFTkSuQmCC">
 </td>
 <td class="content">
-<div class="title">使用常量</div>
+<div class="title">Contain your Constants 使用常量</div>
 <div class="paragraph"><p>If you have multiple Thrift files (in the same namespace) containing const
 definitions, the Thrift compiler will overwrite the <span class="monospaced">Constants.java</span> file with
 the definitions found in the file processed last. You <em>must</em> either define all
@@ -2462,6 +2470,7 @@ includes all the other files.</p></div>
 <div class="sect3">
 <h4 id="_types_2">Types</h4>
 <div class="paragraph"><p>Thrift maps the various base and container types to C++ types as follows:</p></div>
+<div class="paragraph"><p>Thrift基类型和容器类型与C++类型的映射如下:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -2646,6 +2655,11 @@ Changing a default value is generally OK, as long as you remember that default
   by Anja Skarba of <a href="http://webhostinggeeks.com/">http://webhostinggeeks.com/</a>
 </p>
 </li>
+<li>
+<p>
+<a href="https://nobodyhub-learn.github.io/thrift-missing-guide/">Chinese Version</a> by Yan Hai
+</p>
+</li>
 </ul></div>
 </div>
 </div>
@@ -2654,7 +2668,7 @@ Changing a default value is generally OK, as long as you remember that default
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2018-04-16 21:24:18 +08
+ 2018-04-16 22:04:18 +08
 </div>
 </div>
 </body>
