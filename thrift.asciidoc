@@ -1,5 +1,5 @@
 Thrift: The Missing Guide
-========================
+=========================
 Diwaker Gupta <me@diwakergupta.info>
 
 {localdate}:
@@ -137,7 +137,7 @@ Resources 其他资源
 * http://code.google.com/apis/protocolbuffers/docs/overview.html[Protocol
   Buffers]
 
-Translations 其他语言
+Translations 其他译本
 ----------------
 
 * http://science.webhostinggeeks.com/thrift-uputstvo-koje-nedostaje[Serbo-Croatian]
