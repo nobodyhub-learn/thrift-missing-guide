@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.9">
+<meta name="generator" content="AsciiDoc 8.6.10">
 <title>Thrift: The Missing Guide</title>
 <style type="text/css">
 /* Shared CSS for AsciiDoc xhtml11 and html5 backends */
@@ -915,10 +915,7 @@ asciidoc.install(2);
 <body class="article">
 <div id="header">
 <h1>Thrift: The Missing Guide</h1>
-<span id="author">Diwaker Gupta</span><br>
-<span id="email" class="monospaced">&lt;<a href="mailto:me@diwakergupta.info">me@diwakergupta.info</a>&gt;</span><br>
-<span id="revdate">2015-11-08</span>
-<br><span id="revremark">Written against Thrift 0.6.0</span>
+<span id="author">Diwaker Gupta &lt;me@diwakergupta.info&gt;, Yan Hai &lt;yan_h@hotmail.com&gt;</span><br>
 <div id="toc">
   <div id="toctitle">Table of Contents</div>
   <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
@@ -927,7 +924,11 @@ asciidoc.install(2);
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
+<div class="paragraph"><p>2018-04-16:
+Written against Thrift 0.6.0</p></div>
+<div class="paragraph"><p>基于 Thrift 0.6.0</p></div>
 <div class="paragraph"><p>From the <a href="http://thrift.apache.org">Thrift website</a>:</p></div>
+<div class="paragraph"><p>正如 <a href="http://thrift.apache.org">Thrift网站</a> 所说:</p></div>
 <div class="quoteblock">
 <div class="content">Thrift is a software framework for scalable cross-language services development.
 It combines a software stack with a code generation engine to build services
@@ -935,137 +936,178 @@ that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby,
 Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml.</div>
 <div class="attribution">
 </div></div>
+<div class="quoteblock">
+<div class="content">Thrift是一个用于可扩展的, 跨语言的服务开发软件框架.
+它将软件栈和代码生成引擎相结合起来, 高效及无缝地创建可以连接基于不同语言的服务.
+Thrift支持的语言包括: C++, Java, Python, PHP, Ruby,
+Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml.</div>
+<div class="attribution">
+</div></div>
 <div class="paragraph"><p>Thrift is clearly abundant in features. What is sorely lacking though is <em>good</em>
 documentation. This guide is an attempt to fill that hole. But note that this is
 a reference guide&#8201;&#8212;&#8201;for a step-by-step example on how to use Thrift, refer to
 the Thrift tutorial.</p></div>
+<div class="paragraph"><p>在所提供的特性方面, Thrift无疑是非常丰富的. 它唯一的缺点就是缺少一个 <em>好的</em> 文档.
+这个导引的目的就是为了填补这个空白. 但是, 这个指引仅做参考&#8201;&#8212;&#8201;如果需要的是一个一步步讲解如何使用
+Thrift的例子, 请参考 Thrift tutorial.</p></div>
 <div class="paragraph"><p>Many aspects of the structure and organization of this guide have been borrowed
 from the (excellent)
 <a href="http://code.google.com/apis/protocolbuffers/docs/proto.html">Google Protocol
 Buffer Language Guide</a>. I thank the authors of that document.</p></div>
+<div class="paragraph"><p>本导引在结构和组织的很多方面, 都借鉴了(出色的)
+<a href="http://code.google.com/apis/protocolbuffers/docs/proto.html">Google Protocol
+Buffer Language Guide</a>. 在此对其作者表示感谢.</p></div>
 <div class="paragraph"><p>A <a href="thrift.pdf">PDF version</a> is also available.</p></div>
-<div class="paragraph"><div class="title">Copyright</div><p>Copyright &#169; 2013 Diwaker Gupta</p></div>
+<div class="paragraph"><p><a href="thrift.pdf">PDF版本</a>也可由此下载.</p></div>
+<div class="paragraph"><div class="title">Copyright 版权</div><p>Copyright &#169; 2013 Diwaker Gupta</p></div>
 <div class="paragraph"><p>This work is licensed under the
 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons
 Attribution-NonCommercial 3.0
 Unported License</a>.</p></div>
-<div class="paragraph"><div class="title">Contributions</div><p>I welcome feedback and contributions to this guide. You can find the
+<div class="paragraph"><p>本指引遵循协议 <a href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons
+Attribution-NonCommercial 3.0
+Unported License</a>.</p></div>
+<div class="paragraph"><div class="title">Contributions 贡献</div><p>I welcome feedback and contributions to this guide. You can find the
 <a href="https://github.com/diwakergupta/thrift-missing-guide">source code</a>
 over at <a href="http://github.com">GitHub</a>. Alternatively, you can file a
 <a href="https://github.com/diwakergupta/thrift-missing-guide/issues">bug</a>.</p></div>
-<div class="paragraph"><div class="title">Acknowledgements</div><p>I thank the authors of Thrift for the software, the authors of the Google
+<div class="paragraph"><p>我欢迎对于此导引的反馈和贡献
+<a href="https://github.com/diwakergupta/thrift-missing-guide">源码</a>.
+或者, 报告 <a href="https://github.com/diwakergupta/thrift-missing-guide/issues">bug</a>.</p></div>
+<div class="paragraph"><div class="title">Acknowledgements 鸣谢</div><p>I thank the authors of Thrift for the software, the authors of the Google
 Protocol Buffer documentation for the inspiration and the Thrift community for
 the feedback. Special thanks to Dave Engberg from Evernote for his input.</p></div>
-<div class="paragraph"><div class="title">About the Author</div><p>I&#8217;m an open source geek and a software architect. I blog over at
+<div class="paragraph"><p>首先感谢Thrift软件的作者.
+以及Google Protocol Buffer的作者给予的灵感和来自Thrift的反馈.
+特别感谢Dave Engberg.</p></div>
+<div class="paragraph"><div class="title">About the Author 关于作者</div><p>I&#8217;m an open source geek and a software architect. I blog over at
 <a href="http://floatingsun.net">Floating Sun</a> and you can find more about me
 <a href="http://diwakergupta.info">here</a>.</p></div>
+<div class="paragraph"><p>我是一名开源极客和软件架构师.
+Blog: <a href="http://floatingsun.net">Floating Sun</a>
+个人网站: <a href="http://diwakergupta.info">here</a></p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_language_reference">Language Reference</h2>
+<h2 id="_language_reference_语言参考">Language Reference 语言参考</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_types">Types</h3>
+<h3 id="_types_类型">Types 类型</h3>
 <div class="paragraph"><p>The Thrift type system consists of pre-defined base types, user-defined structs,
 container types, exceptions and service definitions.</p></div>
+<div class="paragraph"><p>Thrift的类型系统包含预定义的基础类型, 用户定义的结构体, 容器类型, 异常以及服务定义.</p></div>
 <div class="sect3">
-<h4 id="_base_types">Base Types</h4>
+<h4 id="_base_types_基础类型">Base Types 基础类型</h4>
 <div class="ulist"><ul>
 <li>
 <p>
-<span class="monospaced">bool</span>: A boolean value (true or false), one byte
+<span class="monospaced">bool</span>: 布尔值(true或false), 一个字节. A boolean value (true or false), one byte
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">byte</span>: A signed byte
+<span class="monospaced">byte</span>: 一个字节. A signed byte
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">i16</span>: A 16-bit signed integer
+<span class="monospaced">i16</span>: 16位带符号整数. A 16-bit signed integer
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">i32</span>: A 32-bit signed integer
+<span class="monospaced">i32</span>: 32位带符号整数. A 32-bit signed integer
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">i64</span>: A 64-bit signed integer
+<span class="monospaced">i64</span>: 64位带符号整数. A 64-bit signed integer
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">double</span>: A 64-bit floating point number
+<span class="monospaced">double</span>: 64位浮点数. A 64-bit floating point number
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">binary</span>: A byte array
+<span class="monospaced">binary</span>: 字节数组. A byte array
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">string</span>: Encoding agnostic text or binary string
+<span class="monospaced">string</span>: 编码未知的文本或者二进制字符串. Encoding agnostic text or binary string
 </p>
 </li>
 </ul></div>
 <div class="paragraph"><p>Note that Thrift does not support unsigned integers because they have no direct
 translation to native (primitive) types in many of Thrift&#8217;s target languages.</p></div>
+<div class="paragraph"><p>注意, Thrift不支持无符号整数. 因为, 多数Thrift的目标语言并没有对应的原生类型.</p></div>
 </div>
 <div class="sect3">
-<h4 id="_containers">Containers</h4>
+<h4 id="_containers_容器">Containers 容器</h4>
 <div class="paragraph"><p>Thrift containers are strongly typed containers that map to the most commonly
 used containers in popular programming languages. They are annotated using the
 Java Generics style. There are three containers types available:</p></div>
+<div class="paragraph"><p>Thrift容器是和流行编程语言类似的强类型容器.
+他们使用的都是类似Java泛型的风格. 有三种容器可供使用:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<span class="monospaced">list&lt;t1&gt;</span>: An ordered list of elements of type <span class="monospaced">t1</span>. May contain duplicates.
+<span class="monospaced">list&lt;t1&gt;</span>: 一个 <span class="monospaced">t1</span> 类型的有序列表, 元素可能重复. An ordered list of elements of type <span class="monospaced">t1</span>. May contain duplicates.
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">set&lt;t1&gt;</span>: An unordered set of unique elements of type <span class="monospaced">t1</span>.
+<span class="monospaced">set&lt;t1&gt;</span>: 一个 <span class="monospaced">t1</span> 类型的无序集合. An unordered set of unique elements of type <span class="monospaced">t1</span>.
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">map&lt;t1,t2&gt;</span>: A map of strictly unique keys of type <span class="monospaced">t1</span> to values of type
+<span class="monospaced">map&lt;t1,t2&gt;</span>: 一个从键类型 <span class="monospaced">t1</span> 到值类型 <span class="monospaced">t2</span> 的映射. 键必须是唯一的. A map of strictly unique keys of type <span class="monospaced">t1</span> to values of type
   <span class="monospaced">t2</span>.
 </p>
 </li>
 </ul></div>
 <div class="paragraph"><p>Types used in containers may be any valid Thrift type (including structs and
 exceptions) excluding services.</p></div>
+<div class="paragraph"><p>容器类所使用的类型必须是有效的Thrift类型, 包括结构体和异常, 但不包含服务.</p></div>
 </div>
 <div class="sect3">
-<h4 id="_structs_and_exceptions">Structs and Exceptions</h4>
+<h4 id="_structs_and_exceptions_结构体和异常">Structs and Exceptions 结构体和异常</h4>
 <div class="paragraph"><p>A Thrift struct is conceptually similar to a <span class="monospaced">C</span> struct&#8201;&#8212;&#8201;a convenient way of
 grouping together (and encapsulating) related items. Structs translate to
 classes in object-oriented languages.</p></div>
+<div class="paragraph"><p>Thrift的结构体和 <span class="monospaced">C</span> 中的结构体在概念上很类似&#8201;&#8212;&#8201;都是一种将其他单位组合起来的方式.
+结构体会被转换成面向对象语言中的类.</p></div>
 <div class="paragraph"><p>Exceptions are syntactically and functionally equivalent to structs except that
 they are declared using the <span class="monospaced">exception</span> keyword instead of the <span class="monospaced">struct</span> keyword.
 They differ from structs in semantics&#8201;&#8212;&#8201;when defining RPC services, developers
 may declare that a remote method throws an exception.</p></div>
+<div class="paragraph"><p>除了使用关键字 <span class="monospaced">exception</span> 进行声明之外, 异常在语法上和功能上类似于结构体.
+但是他们在语义上与结构体是有区别的&#8201;&#8212;&#8201;当定义RPC服务是, 开发者可以
+定义一个会抛出异常的远程方法.</p></div>
+<div class="paragraph"><p><a href="#_defining_structs">后续章节</a>会介绍如何定义结构体和异常.</p></div>
 <div class="paragraph"><p>Details on defining structs and exceptions are the subject of a
 <a href="#_defining_structs">later section</a>.</p></div>
 </div>
 <div class="sect3">
-<h4 id="_services">Services</h4>
+<h4 id="_services_服务">Services 服务</h4>
 <div class="paragraph"><p>Service definitions are semantically equivalent to defining an <span class="monospaced">interface</span> (or a
 pure virtual abstract class) in object-oriented programming. The Thrift compiler
 generates fully functional client and server stubs that implement the interface.</p></div>
+<div class="paragraph"><p>服务定义在语义上类似于面向对象语言中的 <span class="monospaced">接口</span> (或者纯虚抽象类).
+Thrift编译器会生成包含接口所有功能的的客户端和服务器桩.</p></div>
+<div class="paragraph"><p><a href="#_defining_services">后续章节</a>会介绍如何定义服务.</p></div>
 <div class="paragraph"><p>Details on defining services are the subject of a <a href="#_defining_services">later section</a>.</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_typedefs">Typedefs</h3>
+<h3 id="_typedefs_类型定义">Typedefs 类型定义</h3>
 <div class="paragraph"><p>Thrift supports C/C++ style typedefs.</p></div>
+<div class="paragraph"><p>Thrift支持C/C++风格的类型定义.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="k">typedef</span> <span class="n">i32</span> <span class="n">MyInteger</span>   <span class="c1">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">i32</span> <span class="n">MyInteger</span>   <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
@@ -1088,7 +1130,7 @@ gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
 ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
-Note there is no trailing semi-colon
+注意没有结尾分号 Note there is no trailing semi-colon
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
@@ -1097,12 +1139,12 @@ izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
 AAAASUVORK5CYII="></td><td>
-Structs can also be used in typedefs
+结构体也可用于类型定义 Structs can also be used in typedefs
 </td></tr>
 </table></div>
 </div>
 <div class="sect2">
-<h3 id="_enums">Enums</h3>
+<h3 id="_enums_枚举">Enums 枚举</h3>
 <div class="paragraph"><p>When you&#8217;re defining a message type, you might want one of its fields to only
 have one of a pre-defined list of values. For example, let&#8217;s say you want to add
 a <span class="monospaced">tweetType</span> field for each <span class="monospaced">Tweet</span>, where the <span class="monospaced">tweetType</span> can be
@@ -1112,8 +1154,14 @@ have one of a specified set of constants as its value (if you try to provide a
 different value, the parser will treat it like an unknown field). In the
 following example we&#8217;ve added an enum called <span class="monospaced">TweetType</span> with all the possible
 values, and a field of the same type:</p></div>
+<div class="paragraph"><p>在你定义消息类型的时候, 你可能会希望其中的一个域从某个预定义的列表中取值.
+比如, 你想在给每个 <span class="monospaced">Tweet</span> 加一个 <span class="monospaced">tweetType</span>. 这个 <span class="monospaced">tweetType</span> 的取值可以是
+<span class="monospaced">TWEET</span>, <span class="monospaced">RETWEET</span>, <span class="monospaced">DM</span>, or <span class="monospaced">REPLY</span> 之一. 你可以通过在你的消息定义中添加
+一个枚举类型&#8201;&#8212;&#8201;枚举类型的值只能是特定的常数集合中的某一元素.(如果你赋予一个集合之外的值,
+编译器会认为其实一个未知域). 在接下来的例子中, 我们添加了名为 <span class="monospaced">TweetType</span> 枚举类型
+并包含所有值.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="k">enum</span> <span class="n">TweetType</span> <span class="p">{</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="n">TweetType</span> <span class="p">{</span>
     <span class="n">TWEET</span><span class="p">,</span>       <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
@@ -1170,7 +1218,7 @@ gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
 ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
-Enums are specified C-style. Compiler assigns default values starting at 0.
+类似于C风格的枚举类型, 编译器默认从0开始赋值. Enums are specified C-style. Compiler assigns default values starting at 0.
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
@@ -1179,7 +1227,7 @@ izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
 AAAASUVORK5CYII="></td><td>
-You can of course, supply specific integral values for constants.
+当然, 也可以给常数提供特定的值. You can of course, supply specific integral values for constants.
 </td></tr>
 <tr><td><img alt="3" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
 JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
@@ -1188,7 +1236,7 @@ Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
 SUVORK5CYII="></td><td>
-Hex values are also acceptable.
+可以接受16进制. Hex values are also acceptable.
 </td></tr>
 <tr><td><img alt="4" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
 HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
@@ -1197,7 +1245,7 @@ ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
 QmCC"></td><td>
-Again notice no trailing semi-colon
+没有结尾分号. Again notice no trailing semi-colon
 </td></tr>
 <tr><td><img alt="5" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
 FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
@@ -1206,19 +1254,22 @@ Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
 c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
 ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
 TkSuQmCC"></td><td>
-Use the fully qualified name of the constant when assigning default values.
+使用全限定名称来赋值. Use the fully qualified name of the constant when assigning default values.
 </td></tr>
 </table></div>
 <div class="paragraph"><p>Note that unlike Protocol Buffers, Thrift does NOT yet support nested enums (or
 structs, for that matter).</p></div>
+<div class="paragraph"><p>注意, 不像Protocol Buffers, Thrift暂不支持枚举嵌套枚举(或其他结构体).</p></div>
 <div class="paragraph"><p>Enumerator constants MUST be in the range of <em>positive</em> 32-bit integers.</p></div>
+<div class="paragraph"><p>枚举常数必须是 <em>正</em> 32位整数.</p></div>
 </div>
 <div class="sect2">
-<h3 id="_comments">Comments</h3>
+<h3 id="_comments_注释">Comments 注释</h3>
 <div class="paragraph"><p>Thrift supports shell-style, C-style multi-line as well as single-line Java/C++
 style comments.</p></div>
+<div class="paragraph"><p>Thrift支持shell风格, C风格多行和Java/C++风格的单行注释.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="cp"># This is a valid comment.</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="cp"># This is a valid comment.</span>
 
 <span class="cm">/*</span>
 <span class="cm"> * This is a multi-line comment.</span>
@@ -1229,15 +1280,19 @@ style comments.</p></div>
 </pre></div></div></div>
 </div>
 <div class="sect2">
-<h3 id="_namespaces">Namespaces</h3>
+<h3 id="_namespaces_命名空间">Namespaces 命名空间</h3>
 <div class="paragraph"><p>Namespaces in Thrift are akin to namespaces in C++ or packages in Java&#8201;&#8212;&#8201;they
 offer a convenient way of organizing (or isolating) your code. Namespaces may
 also be used to prevent name clashes between type definitions.</p></div>
+<div class="paragraph"><p>Thrift的命名空间与C++的命名空间或者Java中的包类似&#8201;&#8212;&#8201;都是为了一种组织(或者隔离)代码的方式.
+命名空间也可以避免类型定义的命名冲突.</p></div>
 <div class="paragraph"><p>Because each language has its own package-like mechanisms (e.g. Python has
 modules), Thrift allows you to customize the namespace behavior on a
 per-language basis:</p></div>
+<div class="paragraph"><p>因为每种语言都有自己类似于包的机制(例如Python的模块). Thrift允许你给不同语言
+来定义不同的命名空间.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="k">namespace</span> <span class="n">cpp</span> <span class="n">com</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">project</span>  <span class="c1">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">cpp</span> <span class="n">com</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">project</span>  <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
@@ -1274,15 +1329,19 @@ Translates to <span class="monospaced">package com.example.project</span>
 </table></div>
 </div>
 <div class="sect2">
-<h3 id="_includes">Includes</h3>
+<h3 id="_includes_文件包含">Includes 文件包含</h3>
 <div class="paragraph"><p>It is often useful to split up Thrift definitions in separate files to ease
 maintainance, enable reuse and improve modularity/organization. Thrift allows
 files to <em>include</em> other Thrift files. Included files are looked up in the
 current directory and by searching relative to any paths specified with the <span class="monospaced">-I</span>
 compiler flag.</p></div>
-<div class="paragraph"><p>Included objects are accessed using the name of the Thrift file as a prefix.</p></div>
+<div class="paragraph"><p>将Thrift的定义分散到不同的文件以便于维护, 重用以及提升模块化和组织.
+Thrift文件允许 <em>包含</em> 其他的Thrift文件. 被包含的文件会在当前目录和由 <span class="monospaced">-I</span> 参数制定的
+相对路径下进行查找.</p></div>
+<div class="paragraph"><p>Included objects are accessed using the name of the Thrift file as a prefix.
+被包含的对象需要使用Thrift文件名作为前缀来访问.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="n">include</span> <span class="s">&quot;tweet.thrift&quot;</span>           <span class="c1">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span></span><span class="n">include</span> <span class="s">&quot;tweet.thrift&quot;</span>           <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
@@ -1308,7 +1367,7 @@ gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
 ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
-File names must be quoted; again notice the absent semi-colon.
+文件需要使用引号包含, 结尾没有分号. File names must be quoted; again notice the absent semi-colon.
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
@@ -1317,16 +1376,17 @@ izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
 AAAASUVORK5CYII="></td><td>
-Note the <span class="monospaced">tweet</span> prefix.
+<span class="monospaced">tweet</span> 文件名前缀. Note the <span class="monospaced">tweet</span> prefix.
 </td></tr>
 </table></div>
 </div>
 <div class="sect2">
-<h3 id="_constants">Constants</h3>
+<h3 id="_constants_常数">Constants 常数</h3>
 <div class="paragraph"><p>Thrift lets you define constants for use across languages. Complex types and
 structs are specified using JSON notation.</p></div>
+<div class="paragraph"><p>Thrift允许你定义跨语言的常数. 复杂的类型和结构体使用JSON表示法赋值.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="k">const</span> <span class="n">i32</span> <span class="n">INT_CONST</span> <span class="o">=</span> <span class="mi">1234</span><span class="p">;</span>    <span class="c1">// <img alt="1" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">i32</span> <span class="n">INT_CONST</span> <span class="o">=</span> <span class="mi">1234</span><span class="p">;</span>    <span class="c1">// <img alt="1" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABjSURBVHja
 VY6xDcAwCAS/pPQaLim9QmajdOk2I2SNrMEIlARIoigU8Cek/4e7zdHaWOYOVwaoA6wOCw05Y7FB
 gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
@@ -1342,19 +1402,22 @@ gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
 ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
-Semi-colon is (confusingly) optional; hex values are valid here.
+结尾分号可选, 允许16进制. Semi-colon is (confusingly) optional; hex values are valid here.
 </td></tr>
 </table></div>
 </div>
 <div class="sect2">
-<h3 id="_defining_structs">Defining Structs</h3>
+<h3 id="_defining_structs_定义结构体">Defining Structs 定义结构体</h3>
 <div class="paragraph"><p>Structs (also known as <em>messages</em> in some systems) are the basic building blocks
 in a Thrift IDL. A struct is composed of <em>fields</em>; each field has a unique
 integer identifier, a type, a name and an optional default value.</p></div>
+<div class="paragraph"><p>结构体(在一些系统中也称为'消息')是Thrift IDL的基本组成部分.
+一个结构体由多个 <em>域</em> 组成; 每个域都由唯一的整数标示符, 类型, 名称以及一个可选的默认值组成.</p></div>
+<div class="paragraph"><p>假设你想构建一个类Twitter的服务.</p></div>
 <div class="paragraph"><p>Consider a simple example. Suppose you want to build a
 <a href="http://twitter.com">Twitter</a>-like service. Here is how you might define a <span class="monospaced">Tweet</span>:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="k">struct</span> <span class="n">Location</span> <span class="p">{</span>                            <span class="c1">// <img alt="5" src="data:image/png;base64,
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Location</span> <span class="p">{</span>                            <span class="c1">// <img alt="5" src="data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
 FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
 A23jhsCQd2IkfH9T3HEkzPFegCXUKSUSpJUPsN7UFOgc9VkZUBoz9l0yrVHZarUcJZeb9XznDyNb
@@ -1408,7 +1471,7 @@ gE0tIWQ+sBcwKM8qoD/wB5wGL8hjfdzWrh01GRp1hInGjDoXwHgsFuzBVLQAAABDdEVYdFNvZnR3
 YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBjcmlzdHlAbXlzdGljLmVzLmR1cG9u
 dC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUANThhMDcyZTA3MGRhMjJmNjEzNWNiZDNlNDE0NTQ2
 ZjloaiHtAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAASUVORK5CYII="></td><td>
-Every field <strong>must</strong> have a unique, positive integer identifier
+每个域必须有一个唯一的正整数标示符. Every field <strong>must</strong> have a unique, positive integer identifier
 </td></tr>
 <tr><td><img alt="2" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB7SURBVHja
 HY6hFcMwDEQ/NDQsNSwU9Apdo7Cw0CsIBoZmhKzQEQJLDQsFVclHpHu693W429Zr7bu541Pg3kCm
@@ -1417,7 +1480,7 @@ izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
 AAAASUVORK5CYII="></td><td>
-Fields may be marked as <span class="monospaced">required</span> or <span class="monospaced">optional</span>
+域必须标记为 <span class="monospaced">required</span> or <span class="monospaced">optional</span>. Fields may be marked as <span class="monospaced">required</span> or <span class="monospaced">optional</span>
 </td></tr>
 <tr><td><img alt="3" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
 JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
@@ -1426,7 +1489,7 @@ Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
 SUVORK5CYII="></td><td>
-Structs may contain other structs
+结构体可以包含其他结构体. Structs may contain other structs
 </td></tr>
 <tr><td><img alt="4" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
 HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
@@ -1435,7 +1498,7 @@ ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
 QmCC"></td><td>
-You may specify an optional "default" value for a field
+默认值是可选的. You may specify an optional "default" value for a field
 </td></tr>
 <tr><td><img alt="5" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB2SURBVHja
 FY6hEcQwDAQPChqGGhoaqgWX8PUYBhqGBn4rX0JooKDh/UlsZ3b2BJKXH8XPTYLh1lpt1h+BwxkR
@@ -1444,20 +1507,28 @@ Ny9CX3/7AAAAQ3RFWHRTb2Z0d2FyZQBAKCMpSW1hZ2VNYWdpY2sgNC4yLjggOTkvMDgvMDEgY3Jp
 c3R5QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlAGZlNjkwNDYzMzc5
 ZWIyNWU1NjJmY2M4Y2M5YjNjN2Uw37I5ngAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElF
 TkSuQmCC"></td><td>
-Multiple structs can be defined and referred to within the same Thrift file
+可以在同一个Thrift文件中定义和引用多个结构体.
+    Multiple structs can be defined and referred to within the same Thrift file
 </td></tr>
 </table></div>
 <div class="paragraph"><p>As you can see, each field in the message definition has a unique numbered tag.
 These tags are used to identify your fields in the wire format, and should not
 be changed once your message type is in use.</p></div>
+<div class="paragraph"><p>正如你看到, 消息定义中的每个域都有一个唯一的数字标签.
+这些数字标签是用来在消息格式中标识你的域. 这些标签不应该在消息类型投入使用后更改.</p></div>
 <div class="paragraph"><p>Fields may be marked <span class="monospaced">required</span> or <span class="monospaced">optional</span> with obvious meanings for
 well-formed structs. Thrift will complain if required fields have not been set
 in a struct, for instance. If an optional field has not been set in the struct,
 it will not be serialized over the wire. If a default value has been specified
 for an optional field, the field is assigned the default value when the struct
 is parsed and no value has been explicitly assigned for that field.</p></div>
+<div class="paragraph"><p>将域可以被标记为 <span class="monospaced">required</span> 或 <span class="monospaced">optional</span> 对于一个良好格式的定义是非常有意义的.
+比如, Thrift会报告如果必须的域没有被复制.
+如果一个可选的域没有被赋值, 它将不会被序列化.
+如果一个可选域有默认值, 在解析结构体时, 如果没有显示对这个可选域赋值, 默认值将被使用.</p></div>
 <div class="paragraph"><p>Unlike services, structs do not support inheritance, that is, a struct may not
 extend other structs.</p></div>
+<div class="paragraph"><p>与服务不同, 结构体不支持继承, 也就是说, 结构体无法拓展其他的结构体.</p></div>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -1521,30 +1592,40 @@ vr6+wTfK/4tEfzeeMmUKkydPzhg8jJAAREgEg0H6+vrQNC2pFL8ZUVWVrKws8vPzycnJQVXVjH/s
 /F/lgJiyQFHragAAAABJRU5ErkJggg==">
 </td>
 <td class="content">
-<div class="title">Required Is Forever</div>You should be very careful about marking fields as required. If at some point
+<div class="title">Required是永久性的</div>You should be very careful about marking fields as required. If at some point
 you wish to stop writing or sending a required field, it will be problematic to
 change the field to an optional field&#8201;&#8212;&#8201;old readers will consider messages
 without this field to be incomplete and may reject or drop them unintentionally.
 You should consider writing application-specific custom validation routines for
-your buffers instead. Some have come to the conclusion that using required does
+your buffers instead. Some have come the conclusion that using required does
 more harm than good; they prefer to use only optional. However, this view is not
 universal.</td>
 </tr></table>
 </div>
+<div class="paragraph"><p>在将某个域标记为required时需要十分小心. 如果你不想在消息中发送那个required域, 将那个
+域变成optional可能会产生问题&#8201;&#8212;&#8201;老版本消息读取器会将缺少required域的消息认为不完整并拒绝
+或者丢弃. 在这种情况下, 你应该考虑编写基于特定应用的自定义消息验证过程.</p></div>
+<div class="paragraph"><p>因此, 有人觉得使用required域是弊大于利. 他们偏向于仅适用optional的域.
+但是这种观点并不普遍.</p></div>
 </div>
 <div class="sect2">
-<h3 id="_defining_services">Defining Services</h3>
+<h3 id="_defining_services_定义服务">Defining Services 定义服务</h3>
 <div class="paragraph"><p>While there are several popular serialization/deserialization frameworks (like
 Protocol Buffers), there are few frameworks that provide out-of-the-box support
 for RPC-based services across multiple languages. This is one of the major
 attractions of Thrift.</p></div>
+<div class="paragraph"><p>尽管当下有很多流行的序列化/反序列化框架(比如Protocol Buffers), 但是却鲜有框架支持
+跨语言的基于PRC的服务. 这也是Thrift的主要目标之一.</p></div>
 <div class="paragraph"><p>Think of service definitions as Java interfaces&#8201;&#8212;&#8201;you need to supply a name and
 signatures for the methods. Optionally, a service may extend other services.</p></div>
+<div class="paragraph"><p>如果我们将服务看做Java接口&#8201;&#8212;&#8201;我们需要提供方法的名字和签名. 此外, 服务可以扩展于其他服务.</p></div>
 <div class="paragraph"><p>The Thrift compiler will generate service interface code (for the server) and
 stubs (for the client) in your chosen language. Thrift ships with RPC libraries
 for most languages that you can then use to run your client and server.</p></div>
+<div class="paragraph"><p>Thrift编译器会你所选的语言生成服务器接口代码(服务器端)和桩代码(客户端).
+Thrift包含了所种语言客户端和服务器端运行所需的RPC库.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="n">service</span> <span class="n">Twitter</span> <span class="o">{</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="n">Twitter</span> <span class="o">{</span>
     <span class="c1">// A method definition looks like C code. It has a return type, arguments,</span>
     <span class="c1">// and optionally a list of exceptions that it may throw. Note that argument</span>
     <span class="c1">// lists and exception list are specified using the exact same syntax as</span>
@@ -1601,7 +1682,7 @@ izp/VNk1YJ8vf6MAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8w
 MSBjcmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBlYWU1
 MjljOTRhN2Y0N2RlY2NmYWRhMjhhY2I5ZGblb7ENAAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30A
 AAAASUVORK5CYII="></td><td>
-Arguments can be primitive types or structs
+参数可以使原始类型或结构体. Arguments can be primitive types or structs
 </td></tr>
 <tr><td><img alt="3" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAAB4SURBVHja
 JU6rFcNADBM09BqBhl6ltDCwKxQeDOwKB7tGYGCoYaChK6cmlt7TD1W5uap/sgoVBnEXWBTSoOdx
@@ -1610,7 +1691,7 @@ Ubg1Y/zrjUwAAABDdEVYdFNvZnR3YXJlAEAoIylJbWFnZU1hZ2ljayA0LjIuOCA5OS8wOC8wMSBj
 cmlzdHlAbXlzdGljLmVzLmR1cG9udC5jb22RuiG4AAAAKnRFWHRTaWduYXR1cmUAODBiYmRhMjcy
 NmRkYWNlOGFiOGEwMWY1OWRlMmViZGII/Q51AAAADnRFWHRQYWdlADEyeDEyKzArMIRtu30AAAAA
 SUVORK5CYII="></td><td>
-Likewise for return types
+返回值也一样. Likewise for return types
 </td></tr>
 <tr><td><img alt="4" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAAAAABzHgM7AAAAAmJLR0QAAKqNIzIAAABzSURBVHja
 HY0hEoUwEEMjkZVYZGVlr1CJxCKRXKPyy28reyVsZeXKsCFi573ZzAQk+x5jaQ6gFQAxIA8XceEN
@@ -1619,13 +1700,15 @@ ZEN3DkOCH/TobUoSVuAYwSSLyzbvaHWVFJxUmmp+PF+twrLkuXzLwPmZ8+OjtH8KS6pGvuoGNo5b
 QG15c3RpYy5lcy5kdXBvbnQuY29tkbohuAAAACp0RVh0U2lnbmF0dXJlADlmODJmY2FjOWUwMzlj
 YmRiNzIzODBhNDU5MTMyNGY1gLv4dgAAAA50RVh0UGFnZQAxMngxMiswKzCEbbt9AAAAAElFTkSu
 QmCC"></td><td>
-<span class="monospaced">void</span> is a valid return type for functions
+<span class="monospaced">void</span> 是有效的函数返回值. <span class="monospaced">void</span> is a valid return type for functions
 </td></tr>
 </table></div>
 <div class="paragraph"><p>Note that the argument lists (and exception lists) for functions are specified
 exactly like structs.</p></div>
+<div class="paragraph"><p>注意, 函数的参数列表(和异常列表)和结构体非常类似.</p></div>
 <div class="paragraph"><p>Services support inheritance: a service may optionally inherit from another
 service using the <span class="monospaced">extends</span> keyword.</p></div>
+<div class="paragraph"><p>服务支持继承: 一个服务可以可以使用关键词 <span class="monospaced">extends</span> 来扩展其他服务.</p></div>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -1685,26 +1768,32 @@ JpL5tYCZpEyw2f/nWt1ag2UtM0x3Mq1iAp1j+bH0M7KFCGWDnfmbd8AMnuxfUzL/C0rp/wFnFd4n
 EQn3XQAAAABJRU5ErkJggg==">
 </td>
 <td class="content">
-<div class="title">Nested Types</div>As of this writing, Thrift does NOT support nested type <em>definitions</em>. That is,
+<div class="title">嵌套类型</div>As of this writing, Thrift does NOT support nested type <em>definitions</em>. That is,
 you may not define a struct (or an enum) within a struct; you may of course
-<em>use</em> structs/enums within other structs.</td>
+<em>use</em> structs/enums within other structs.
+在写这篇文章时, Thrift不支持嵌套类型 <em>定义</em>. 也就是说你不可以在一个结构体重定义另外一个
+结构体(或枚举). 当然在结构体重 <em>使用</em> 其他的结构体/枚举是允许的.</td>
 </tr></table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generated_code">Generated Code</h2>
+<h2 id="_generated_code_生成的代码">Generated Code 生成的代码</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>This section contains documentation for working with Thrift generated code in
 various target languages. We begin by introducing the common concepts that are
 used across the board&#8201;&#8212;&#8201;these govern how the generated code is structured and
 will hopefully help you understand how to use it effectively.</p></div>
+<div class="paragraph"><p>这一章讲解了如何使用由Thrift生成的代码.
+首先我们会介绍一些在Thrift广泛使用的概念&#8201;&#8212;&#8201;这些概念控制着生成代码的结构和方式.
+理解这些概念能够帮助你理解如果跟高效的使用Thrift.</p></div>
 <div class="sect2">
-<h3 id="_concepts">Concepts</h3>
+<h3 id="_concepts_概念">Concepts 概念</h3>
 <div class="paragraph"><p>Here is a pictorial view of the Thrift network stack:</p></div>
+<div class="paragraph"><p>Thrift的网络栈的图示:</p></div>
 <div class="listingblock">
-<div class="title">The Thrift Network Stack</div>
+<div class="title">The Thrift Network Stack Thrift网络栈</div>
 <div class="content monospaced">
 <pre>+-------------------------------------------+
 | cGRE                                      |
@@ -1725,11 +1814,14 @@ will hopefully help you understand how to use it effectively.</p></div>
 +-------------------------------------------+</pre>
 </div></div>
 <div class="sect3">
-<h4 id="_transport">Transport</h4>
+<h4 id="_transport_传输">Transport 传输</h4>
+<div class="paragraph"><p>传输层提供了一个对网络读写简单的抽象.
+这使得Thrift可以将底层的传输形式和系统的其他部分(例如序列化反序列化)进行解耦.</p></div>
 <div class="paragraph"><p>The Transport layer provides a simple abstraction for reading/writing from/to
 the network. This enables Thrift to decouple the underlying transport from the
 rest of the system (serialization/deserialization, for instance).</p></div>
 <div class="paragraph"><p>Here are some of the methods exposed by the <span class="monospaced">Transport</span> interface:</p></div>
+<div class="paragraph"><p><span class="monospaced">Transport</span> 接口的主要方法:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -1757,6 +1849,8 @@ rest of the system (serialization/deserialization, for instance).</p></div>
 </p>
 </li>
 </ul></div>
+<div class="paragraph"><p>除了以上的 <span class="monospaced">Transport</span> 接口, Thrift也提供了 <span class="monospaced">ServerTransport</span> 接口来接受或创建
+原始的传输对象. 顾名思义, <span class="monospaced">ServerTransport</span> 主要用于服务器端的传入连接创建新的传输对象.</p></div>
 <div class="paragraph"><p>In addition to the <span class="monospaced">Transport</span> interface above, Thrift also uses a
 <span class="monospaced">ServerTransport</span> interface used to accept or create primitive transport
 objects. As the name suggest, <span class="monospaced">ServerTransport</span> is used mainly on the server
@@ -1783,6 +1877,7 @@ side to create new Transport objects for incoming connections.</p></div>
 </p>
 </li>
 </ul></div>
+<div class="paragraph"><p>对于大多数Thrift所支持的语言都可以使用以下两种传输方式.</p></div>
 <div class="paragraph"><p>Here are some of the transports available for majority of the Thrift-supported
 languages:</p></div>
 <div class="ulist"><ul>
@@ -1799,16 +1894,21 @@ http: as the name suggests
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="_protocol">Protocol</h4>
+<h4 id="_protocol_协议">Protocol 协议</h4>
+<div class="paragraph"><p>协议层抽象定义了如何将内存中的数据结构映射到某个消息约定格式(wire-format).
+换句话说, 协议定义了如何将底层的传输数据解码/编码成相应的数据类型.
+因此, 协议的实现控制了编码方案, 并且对序列化和反序列化负责.
+从这个角度讲, 协议的例子包括JSON, XML, 纯文本, 压缩二进制等.</p></div>
 <div class="paragraph"><p>The Protocol abstraction defines a mechanism to map in-memory data structures to
 a wire-format. In other words, a protocol specifies how datatypes use the
 underlying Transport to encode/decode themselves.  Thus the protocol
 implementation governs the encoding scheme and is responsible for
 (de)serialization. Some examples of protocols in this sense include JSON, XML,
 plain text, compact binary etc.</p></div>
+<div class="paragraph"><p><span class="monospaced">Protocol</span> 接口</p></div>
 <div class="paragraph"><p>Here is the <span class="monospaced">Protocol</span> interface:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="n">writeMessageBegin</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="n">writeMessageBegin</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
 <span class="n">writeMessageEnd</span><span class="p">()</span>
 <span class="n">writeStructBegin</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 <span class="n">writeStructEnd</span><span class="p">()</span>
@@ -1849,9 +1949,12 @@ plain text, compact binary etc.</p></div>
 <span class="kt">double</span> <span class="o">=</span> <span class="n">readDouble</span><span class="p">()</span>
 <span class="n">string</span> <span class="o">=</span> <span class="n">readString</span><span class="p">()</span>
 </pre></div></div></div>
+<div class="paragraph"><p>Thrift协议被设计成面向流的(stream oriented), 因此不需要显示对其进行帧处理.
+比如说, 在序列化之前, 无需知道字符串的长度或者列表中元素的数量.</p></div>
 <div class="paragraph"><p>Thrift Protocols are stream oriented by design. There is no need for any
 explicit framing. For instance, it is not necessary to know the length of a
 string or the number of items in a list before we start serializing them.</p></div>
+<div class="paragraph"><p>对于大多数Thrift所支持的语言都可以使用下列的传输协议.</p></div>
 <div class="paragraph"><p>Here are some of the protocols available for majority of the Thrift-supported
 languages:</p></div>
 <div class="ulist"><ul>
@@ -1875,50 +1978,59 @@ json:
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="_processor">Processor</h4>
+<h4 id="_processor_处理器">Processor 处理器</h4>
+<div class="paragraph"><p>处理器对从输入流读取数据和向输出流写出数据的功能进行封装.
+输出和输出流都是由协议对象代表.</p></div>
 <div class="paragraph"><p>A Processor encapsulates the ability to read data from input streams and write
 to output streams. The input and output streams are represented by Protocol
 objects. The Processor interface is extremely simple:</p></div>
+<div class="paragraph"><p>处理器接口很简单:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="kd">interface</span> <span class="nc">TProcessor</span> <span class="o">{</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nc">TProcessor</span> <span class="o">{</span>
     <span class="n">bool</span> <span class="nf">process</span><span class="o">(</span><span class="n">TProtocol</span> <span class="n">in</span><span class="o">,</span> <span class="n">TProtocol</span> <span class="n">out</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">TException</span>
 <span class="o">}</span>
 </pre></div></div></div>
+<div class="paragraph"><p>编译器会生成特定于服务的处理器的实现.
+协议实际上所做的工作就是将数据从消息(wire)中读出(根据输入协议), 在将处理委托给处理程序(handler),
+最后将响应写入返回的消息中(使用输出协议).</p></div>
 <div class="paragraph"><p>Service-specific processor implementations are generated by the compiler. The
 Processor essentially reads data from the wire (using the input protocol),
 delegates processing to the handler (implemented by the user) and writes the
 response over the wire (using the output protocol).</p></div>
 </div>
 <div class="sect3">
-<h4 id="_server">Server</h4>
-<div class="paragraph"><p>A Server pulls together all of the various features described above:</p></div>
+<h4 id="_server_服务器">Server 服务器</h4>
+<div class="paragraph"><p>服务器将所有的特性进行组合
+A Server pulls together all of the various features described above:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-Create a transport
+创建一个传输 Create a transport
 </p>
 </li>
 <li>
 <p>
-Create input/output protocols for the transport
+为传输创建输入输出协议 Create input/output protocols for the transport
 </p>
 </li>
 <li>
 <p>
-Create a processor based on the input/output protocols
+基于输入输出协议创建处理器 Create a processor based on the input/output protocols
 </p>
 </li>
 <li>
 <p>
-Wait for incoming connections and hand them off to the processor
+等待传入连接并将其交给处理器 Wait for incoming connections and hand them off to the processor
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>Next we discuss the generated code for specific languages. Unless mentioned
+<div class="paragraph"><p>接下来, 我们讨论下为特定语言生成的代码.
+除非特别说明, 后面的部分都会使用以下Thrift定义.
+Next we discuss the generated code for specific languages. Unless mentioned
 otherwise, the sections below will assume the following Thrift specification:</p></div>
 <div class="listingblock">
-<div class="title">Example IDL</div>
-<div class="content"><div class="highlight"><pre><span class="k">namespace</span> <span class="n">cpp</span> <span class="n">thrift</span><span class="p">.</span><span class="n">example</span>
+<div class="title">范例IDL</div>
+<div class="content"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">cpp</span> <span class="n">thrift</span><span class="p">.</span><span class="n">example</span>
 <span class="k">namespace</span> <span class="n">java</span> <span class="n">thrift</span><span class="p">.</span><span class="n">example</span>
 
 <span class="k">enum</span> <span class="n">TweetType</span> <span class="p">{</span>
@@ -1963,18 +2075,24 @@ otherwise, the sections below will assume the following Thrift specification:</p
 </pre></div></div></div>
 <div class="sidebarblock">
 <div class="content">
-<div class="title">How are nested structs initialized?</div>
-<div class="paragraph"><p>In an earlier section, we saw how Thrift allows structs to contain other structs
-(no nested definitions yet though!) In most object-oriented and/or dynamic
-languages, structs map to objects and so it is instructive to understand how
+<div class="title">嵌套结构如何初始化?</div>
+<div class="paragraph"><p>In an earlier section, we saw how Thrift allows structs to contain other structs</p></div>
+<div class="paragraph"><p>在之前的部分, 我们看到了Thrift是如何使用结构来包含其他的结构(尽管没有嵌套的定义！)</p></div>
+<div class="paragraph"><p>(no nested definitions yet though!) In most object-oriented and/or dynamic</p></div>
+<div class="paragraph"><p>在大多数面向对象或者动态语言中, 结构对应于其中的对象. 因此了解Thrift如何初始化嵌套结构
+是有益的.</p></div>
+<div class="paragraph"><p>languages, structs map to objects and so it is instructive to understand how
 Thrift initializes nested structs. One reasonable approach would be to treat the
 nested structs as pointers or references and initialize them with NULL, until
 explicitly set by the user.</p></div>
-<div class="paragraph"><p>Unfortunately, for many languages, Thrift uses a <em>pass by value</em> model. As a
-concrete example, consider the generated C++ code for the <span class="monospaced">Tweet</span> struct in our
+<div class="paragraph"><p>一个合理的方法是将嵌套的结构作为指针或者引用, 并且将他们初始化为NULL直到被显示赋值.</p></div>
+<div class="paragraph"><p>Unfortunately, for many languages, Thrift uses a <em>pass by value</em> model. As a</p></div>
+<div class="paragraph"><p>不幸的是, 对很多语言而言, Thrift使用值传递模型.</p></div>
+<div class="paragraph"><p>concrete example, consider the generated C++ code for the <span class="monospaced">Tweet</span> struct in our
 example above:</p></div>
+<div class="paragraph"><p>作为一个具体的例子，考虑有上面例子中为+Tweet+结构生成的生成的C++代码:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre>  <span class="p">...</span>
+<div class="content"><div class="highlight"><pre><span></span>  <span class="p">...</span>
   <span class="kt">int32_t</span> <span class="n">userId</span><span class="p">;</span>
   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">userName</span><span class="p">;</span>
   <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">text</span><span class="p">;</span>
@@ -1986,7 +2104,10 @@ example above:</p></div>
 <div class="paragraph"><p>As you can see, the nested <span class="monospaced">Location</span> structure is <strong>fully allocated inline</strong>.
 Because <span class="monospaced">Location</span> is optional, the code uses the internal <em>__isset</em> flags to
 determine if the field has actually been "set" by the user.</p></div>
+<div class="paragraph"><p>如你所见, 嵌套的 <span class="monospaced">Location</span> 结构是<strong>完全内联分配</strong>.</p></div>
+<div class="paragraph"><p>因为 <span class="monospaced">Location</span> 是可选的, 代码使用内部标记'__isset'来决定这个域是否被复制.</p></div>
 <div class="paragraph"><p>This can lead to some surprising and unintuitive behavior:</p></div>
+<div class="paragraph"><p>这个可能导致某些意外的非直观行为:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -1997,11 +2118,24 @@ Since the full size of every sub-structure may be allocated at initialization
 </li>
 <li>
 <p>
+因为对于某些语言来说, 需要在初始化时为其中的子结构分配空间, 因此内存使用会比期望的要高.
+  对于那些有诸多未设置域的复杂结构体情况尤为突出.
+</p>
+</li>
+<li>
+<p>
 The parameters and return types for service methods may not be "optional" and
   you can&#8217;t assign or return <span class="monospaced">null</span> in any dynamic language. Thus to return a
   "no value" result from a method, you must declare an envelope structure with
   an optional field containing the value and then return the envelope with that
   field unset.
+</p>
+</li>
+<li>
+<p>
+服务的参数和返回值类型可能不是可选的. 并且你无法在动态语言中将其赋值为或返回null. 因此,
+  为了返回一个"无值"的结果, 你必须要申明一个包装结构. 这个包装结构包含了一个可选的域.
+  在返回"无值"结果时, 实际上返回的是一个域值为空的包装结构.
 </p>
 </li>
 <li>
@@ -2016,6 +2150,15 @@ The transport layer can, however, marshal method calls from older versions of
   declare a parameter to be nullable within the IDL.
 </p>
 </li>
+<li>
+<p>
+传输层可以处理旧版本的调用(丢失参数). 因此, 如果原始版本包含方法
+  <span class="monospaced">postTweet(1: Tweet tweet)</span>, 而新版本中将其改为
+  <span class="monospaced">postTweet(1: Tweet tweet, 2: string group)</span>. 那么基于新版本会接受原始版本的
+  客户端发来的请求, 并将新参数定为未设置. 如果新版本服务器是Java实现的, 那么那个缺失的
+  新参数的值就会是null. 然而你可能并没有在IDl中将那个参数设置为可为空的.
+</p>
+</li>
 </ul></div>
 </div></div>
 </div>
@@ -2027,12 +2170,12 @@ The transport layer can, however, marshal method calls from older versions of
 <div class="ulist"><ul>
 <li>
 <p>
-a single file (<span class="monospaced">Constants.java</span>) containing all constant definitions
+所有的常数声明包含在一个单独文件 a single file (<span class="monospaced">Constants.java</span>) containing all constant definitions
 </p>
 </li>
 <li>
 <p>
-one file per struct, enum and service
+结构体,枚举和服务各自单独对应一个文件 one file per struct, enum and service
 </p>
 </li>
 </ul></div>
@@ -2102,7 +2245,7 @@ uSP3jMwwjKy4G3AXwB0ugAsx5YzMndW//DOy3OFMjGwrxrKs7NX9LBfAneFFUcxec6rU5zqpvCqA
 qTCT16/0nPgLA/i6xjf+Xw3+B2ll/uiqTaJTAAAAAElFTkSuQmCC">
 </td>
 <td class="content">
-<div class="title">Naming Conventions</div>
+<div class="title">Naming Conventions 命名规则</div>
 <div class="paragraph"><p>While the Thrift compiler does not enforce any naming conventions, it is
 advisable to stick to standard naming conventions otherwise you may be in for
 some surprises. For instance, if you have a struct named <span class="monospaced">tweetSearchResults</span>
@@ -2110,12 +2253,17 @@ some surprises. For instance, if you have a struct named <span class="monospaced
 <span class="monospaced">TweetSearchResults</span> (note the CamelCase) containing a class named
 <span class="monospaced">tweetSearchResults</span> (like the original struct). This will obviously not
 compile under Java.</p></div>
+<div class="paragraph"><p>尽管Thrift编译器不会要求任何命名规则, 但是还是建议遵守彼岸准的命名规则.
+否则的可能会遇到预料之外的情况.
+比如说, 如果有一个名为 <span class="monospaced">tweetSearchResults</span> 的结构体, Thrift编译器将会生成一个名为
+ <span class="monospaced">TweetSearchResults</span> 的Java文件来包含一个名为 <span class="monospaced">tweetSearchResults</span> 的类.
+这将导致编译错误.</p></div>
 </td>
 </tr></table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_types_2">Types</h4>
+<h4 id="_types">Types</h4>
 <div class="paragraph"><p>Thrift maps the various base and container types to Java types as follows:</p></div>
 <div class="ulist"><ul>
 <li>
@@ -2179,27 +2327,37 @@ part. This is not surprising given that Java was the primary target language
 when the Thrift project began.</p></div>
 </div>
 <div class="sect3">
-<h4 id="_typedefs_2">Typedefs</h4>
-<div class="paragraph"><p>The Java language does not have any native support for "typedefs". So when the
-Thrit Java code generator encounters a typedef declaration, it merely
+<h4 id="_typedefs">Typedefs</h4>
+<div class="paragraph"><p>The Java language does not have any native support for "typedefs". So when the</p></div>
+<div class="paragraph"><p>Java语言没有对"typedefs"原生支持. 所以当Thrife编译器遇到typedef声明时, 它只是
+使用原始类型代替.</p></div>
+<div class="paragraph"><p>Thrit Java code generator encounters a typedef declaration, it merely
 substitutes it with the original type. That is, even though you may have
 typedefd <span class="monospaced">TypeA</span> to <span class="monospaced">TypeB</span>, in the generated Java code, all references to
 <span class="monospaced">TypeB</span> will be replaced by <span class="monospaced">TypeA</span>.</p></div>
+<div class="paragraph"><p>因此, 尽管你将 <span class="monospaced">TypeA</span> typedef 为 <span class="monospaced">TypeB</span>, 在生成的Java代码中, 所有对 <span class="monospaced">TypeB</span>
+都会被 <span class="monospaced">TypeA</span> 替换.</p></div>
 <div class="paragraph"><p>Consider the example IDL above. The declaration for <span class="monospaced">tweets</span> in the generated
 code for <span class="monospaced">TweetSearchResults</span> is simply <span class="monospaced">public List&lt;Tweets&gt; tweets</span>.</p></div>
+<div class="paragraph"><p>考虑以上的范例, 声明中的 <span class="monospaced">TweetSearchResults</span> 里的 <span class="monospaced">tweets</span> 为
+<span class="monospaced">public List&lt;Tweets&gt; tweets</span> .</p></div>
 </div>
 <div class="sect3">
-<h4 id="_enums_2">Enums</h4>
+<h4 id="_enums">Enums</h4>
 <div class="paragraph"><p>Thrift enums map to Java <span class="monospaced">enum</span> types. You can obtain the numeric value of an
 enum by using the <span class="monospaced">getValue</span> method (via the interface <span class="monospaced">TEnum</span>). In addition,
 the compiler generates a <span class="monospaced">findByValue</span> method to obtain the enum corresponding
 to a numeric value. This is more robust than using the <span class="monospaced">ordinal</span> feature of Java
 enums.</p></div>
+<div class="paragraph"><p>Thrift枚举映射为Java <span class="monospaced">enum</span> 类型. 你可以通过(接口 <span class="monospaced">TEnum</span> ) <span class="monospaced">getValue</span> 来获取其数字值.
+此外, 编译器生成了一个 <span class="monospaced">findByValue</span> 方法来根据数字值来获取枚举.</p></div>
+<div class="paragraph"><p>这比使用Java的 <span class="monospaced">ordinal</span> 特性更强大.</p></div>
 </div>
 <div class="sect3">
-<h4 id="_constants_2">Constants</h4>
+<h4 id="_constants">Constants</h4>
 <div class="paragraph"><p>Thrift puts all defined constants in a public class named <span class="monospaced">Constants</span> as <span class="monospaced">public
 static final</span> members. Constants of any of the primitive types are supported.</p></div>
+<div class="paragraph"><p>Thrfit 将所有定义的常数作为 <span class="monospaced">public static final</span> 成员放入一个public类 <span class="monospaced">Constants</span> 中.</p></div>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -2254,12 +2412,15 @@ uSP3jMwwjKy4G3AXwB0ugAsx5YzMndW//DOy3OFMjGwrxrKs7NX9LBfAneFFUcxec6rU5zqpvCqA
 qTCT16/0nPgLA/i6xjf+Xw3+B2ll/uiqTaJTAAAAAElFTkSuQmCC">
 </td>
 <td class="content">
-<div class="title">Contain your Constants</div>
+<div class="title">使用常量</div>
 <div class="paragraph"><p>If you have multiple Thrift files (in the same namespace) containing const
 definitions, the Thrift compiler will overwrite the <span class="monospaced">Constants.java</span> file with
 the definitions found in the file processed last. You <em>must</em> either define all
 your constants in a single file, or invoke the compiler on a single file that
 includes all the other files.</p></div>
+<div class="paragraph"><p>如果你有多个Thrift文件(在同一个命名空间中)包含const定义, Thrift编译器会使用最后处理
+的覆盖 <span class="monospaced">Constants.java</span> 的内容. 你 <em>必须</em> 在一个文件中定义所有的常数, 或者在一个包含
+了所有其他的文件生调用编译器.</p></div>
 </td>
 </tr></table>
 </div>
@@ -2272,17 +2433,17 @@ includes all the other files.</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-all constants go into a single <span class="monospaced">.cpp/.h</span> pair
+所有的出书都会生成到单独的一对+.cpp/.h+中 all constants go into a single <span class="monospaced">.cpp/.h</span> pair
 </p>
 </li>
 <li>
 <p>
-all type definitions (enums and structs) go into another <span class="monospaced">.cpp/.h</span> pair
+所有的类型定义(枚举和结构体)会生成至另一对+.cpp/.h+中 all type definitions (enums and structs) go into another <span class="monospaced">.cpp/.h</span> pair
 </p>
 </li>
 <li>
 <p>
-each service gets its own <span class="monospaced">.cpp/.h</span> pair
+每个服务会有自己的<span class="monospaced">.cpp/.h+对 each service gets its own +.cpp/.h</span> pair
 </p>
 </li>
 </ul></div>
@@ -2299,7 +2460,7 @@ each service gets its own <span class="monospaced">.cpp/.h</span> pair
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="_types_3">Types</h4>
+<h4 id="_types_2">Types</h4>
 <div class="paragraph"><p>Thrift maps the various base and container types to C++ types as follows:</p></div>
 <div class="ulist"><ul>
 <li>
@@ -2361,24 +2522,32 @@ each service gets its own <span class="monospaced">.cpp/.h</span> pair
 </div>
 </div>
 <div class="sect2">
-<h3 id="_other_languages">Other Languages</h3>
+<h3 id="_other_languages_其他语言">Other Languages 其他语言</h3>
 <div class="paragraph"><p>Python, Ruby, Javascript etc.</p></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_best_practices">Best Practices</h2>
+<h2 id="_best_practices_最佳实践">Best Practices 最佳实践</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_versioning_compatibility">Versioning/Compatibility</h3>
+<h3 id="_versioning_compatibility_版本和兼容性">Versioning/Compatibility 版本和兼容性</h3>
 <div class="paragraph"><p>Protocols evolve over time. If an existing message type no longer meets all
 your needs&#8201;&#8212;&#8201;for example, you&#8217;d like the message format to have an extra field&#8201;&#8212;&#8201;but you&#8217;d still like to use code created with the old format, don&#8217;t worry!
 It&#8217;s very simple to update message types without breaking any of your existing
 code. Just remember the following rules:</p></div>
+<div class="paragraph"><p>协议总是在不断的进化中, 如果一个现存的消息类型不在满足你的任何需求&#8201;&#8212;&#8201; 比如说, 你需要
+消息格式包含额外的域&#8201;&#8212;&#8201;但是你任然想要使用以旧格式创建的代码, 不用担心!
+更新消息类型非常简单，且不会破坏任何现有代码. 仅需记住以下规则:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
 Don&#8217;t change the numeric tags for any existing fields.
+</p>
+</li>
+<li>
+<p>
+不要改变现有域的唯一数字标记
 </p>
 </li>
 <li>
@@ -2397,10 +2566,26 @@ Any new fields that you add should be optional. This means that any messages
 </li>
 <li>
 <p>
+任何新添加的域都应该是optional. 这意味着使用"旧"消息格式代码代码序列化的消息可以
+  被新生成的代码解析, 因为它们不会缺少任何required元素. 同时你也应该为这些新添加的
+  元素制定合理的默认值. 这样新生成的代码就可以正常的处理由旧代码生成的消息. 同样, 新
+  代码生成的消息也可以被旧代码解析: 新添加的域将会被忽略. 然而, 未知域并不会被丢弃.
+  如果该消息稍后序列化，未知域随其一同序列化&#8201;&#8212;&#8201;所以如果消息传递给新的代码，新的字段
+  仍然是可用。
+</p>
+</li>
+<li>
+<p>
 Non-required fields can be removed, as long as the tag number is not used
   again in your updated message type (it may be better to rename the field
   instead, perhaps adding the prefix "OBSOLETE_", so that future users of your
   .thrift can&#8217;t accidentally reuse the number).
+</p>
+</li>
+<li>
+<p>
+只要数字标识不会被更新后的消息类型重用, Non-required域可以被删除(更好的解决方案是重命名
+  这些域, 比如说加上"OBSOLETE_"前缀, 以避免以后其他用户不消息重用数字标识).
 </p>
 </li>
 <li>
@@ -2412,12 +2597,19 @@ Changing a default value is generally OK, as long as you remember that default
   default value that was defined in the sender&#8217;s code.
 </p>
 </li>
+<li>
+<p>
+因为默认值不会通过消息传送, 改变默认值一般来说是没有问题的. 因此, 如果程序收到包含
+  未设定域的消息, 程序将会使用当前版本中所使用的默认值来初始化未设定域, 而不会使用发送者
+  版本中所定义的默认值.
+</p>
+</li>
 </ul></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_resources">Resources</h2>
+<h2 id="_resources_其他资源">Resources 其他资源</h2>
 <div class="sectionbody">
 <div class="ulist"><ul>
 <li>
@@ -2445,7 +2637,7 @@ Changing a default value is generally OK, as long as you remember that default
 </div>
 </div>
 <div class="sect1">
-<h2 id="_translations">Translations</h2>
+<h2 id="_translations_其他语言">Translations 其他语言</h2>
 <div class="sectionbody">
 <div class="ulist"><ul>
 <li>
@@ -2461,7 +2653,8 @@ Changing a default value is generally OK, as long as you remember that default
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-11-08 18:14:04 PST
+Last updated
+ 2018-04-16 21:24:18 +08
 </div>
 </div>
 </body>
