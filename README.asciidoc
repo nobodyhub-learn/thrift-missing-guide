@@ -7,5 +7,7 @@ Yan Hai <yan_h@hotmail.com>
 文档的空白.
 
 HTML英文版: http://diwakergupta.github.io/thrift-missing-guide
+
 HTML中文版: https://nobodyhub-learn.github.io/thrift-missing-guide/
+
 PDF英文版: http://diwakergupta.github.io/thrift-missing-guide/thrift.pdf
