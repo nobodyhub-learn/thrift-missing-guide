@@ -136,6 +136,8 @@ Resources 其他资源
 * http://wiki.apache.org/thrift[Thrift Wiki]
 * http://code.google.com/apis/protocolbuffers/docs/overview.html[Protocol
   Buffers]
+* https://thrift.apache.org/static/files/thrift-20070401.pdf[Thrift white paper (pdf)]
+* https://erikvanoosten.github.io/thrift-missing-specification/[Thrift missing specification]
 
 Translations 其他译本
 ----------------
